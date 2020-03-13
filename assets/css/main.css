@@ -1,0 +1,113 @@
+/***********************************
+ * Global
+ ***********************************/
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: #F9F9F9;
+}
+
+/*** Forms ***/
+/* Form */
+form { margin-top: 100px; }
+
+/* Fields and double fields */
+.field {
+    width: 400px;
+    margin: 0 auto 45px auto;
+}
+
+.field.double {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.field.double div { width: 190px; }
+
+/* Label */
+.field label {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+/* Inputs */
+.field input {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 15px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: #F9F9F9;
+    border: none;
+    border-bottom: 2px #707070 solid;
+}
+
+.field input:required { box-shadow:none; }
+.field input:invalid { border-color: #ff4444; }
+.field input:placeholder-shown { border-color: #707070; }
+.field input:focus { border-color: #A94CE6; }
+
+/* Submit button */
+input[type=submit] {
+    display: block;
+    width: 170px;
+    height: 50px;
+    margin: 75px auto 0 auto;
+    background: #A94CE6;
+    /*background: linear-gradient(75deg, rgb(254, 110, 196), rgb(120, 115, 245));*/
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1em;
+    transition: background-color 500ms;
+    cursor: pointer;
+}
+
+input[type=submit]:hover { background-color: #9a4cd7; }
+input[type=submit]:active { background-color: #884ac3; padding: 0; transition-duration: 0s }
+
+/* "Already have an account" link */
+#switchRegLog { text-align: center; }
+#switchRegLog a { text-decoration: none; color: #A94CE6; }
+#switchRegLog a:hover { text-decoration: underline; }
+
+/***********************************
+ * Register page
+ ***********************************/
+
+#registerBody {
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+}
+
+/*** Register container ***/
+#registerContainer {
+    width: 768px;
+    height: 100%;
+}
+
+/* Register header */
+#registerHeader {
+    text-align: center;
+    padding-top: 75px;
+}
+
+#registerHeader h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+}
+
+/*** Register img ***/
+#registerRightImg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 768px;
+    background: url("../images/registerImg.jpg") no-repeat;
+    background-size: cover;
+}
