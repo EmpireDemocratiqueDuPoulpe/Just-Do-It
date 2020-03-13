@@ -12,22 +12,27 @@
     <body id="registerBody">
         <!-- Register container -->
         <div id="registerContainer">
+            <!-- Title -->
             <div id="registerHeader">
                 <h1>Inscription</h1>
             </div>
 
+            <!-- Form -->
             <form action="#" method="post">
 
+                <!-- Username -->
                 <div class="field">
                     <label for="rUsername">Nom d'utilisateur</label>
                     <input type="text" id="rUsername" name="username" placeholder=" " minlength="1" maxlength="32" required/>
                 </div>
 
+                <!-- E-mail -->
                 <div class="field">
                     <label for="rEmail">E-mail</label>
                     <input type="email" id="rEmail" name="email" placeholder=" " minlength="5" maxlength="255" required/>
                 </div>
 
+                <!-- Passwords -->
                 <div class="field double">
                     <div>
                         <label for="rPassword1">Mot de passe</label>
