@@ -73,5 +73,6 @@ Vous aurez un passage de 10 à 15 minutes de présentation du projet. Vous pouve
 		 - js
 		 - images
 	 - classes
+	 - config
 	 - php
 	 - views
