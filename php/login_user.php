@@ -5,18 +5,22 @@ $username = isset($_POST["username"]) ? htmlspecialchars($_POST["username"]) : n
 $password = isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : null;
 
 $req = $db->prepare("SELECT * FROM users WHERE username = ?");
-$req->execute([$password]);
+$req->execute([$username]);
 $data = $req->fetch();
-
 
 if($data) {
 
-    var_dump($data);
+    // Get passwords
+    $password_peppered = hash_hmac("sha256", $password, $config["SECURITY"]["pepper"]);
 
-    if (password_verify($password, $data['password'])) {
-        header("Location: ../register.php");
+    // Check passwords
+    if (!password_verify($password_peppered, $data["password"])) {
+
+        redirectTo("../login.php?error=1");
+
     } else {
-        echo 'Wrong password';
+
+        redirectTo("../index.php");
     }
 
 }else{
