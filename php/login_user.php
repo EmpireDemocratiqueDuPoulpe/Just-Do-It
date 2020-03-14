@@ -1,11 +1,11 @@
 <?php
 require_once "../init.php";
 
-$config["DB"]["user"] = isset($_POST["username"]) ? htmlspecialchars($_POST["username"]) : null;
-$config["DB"]["password"] = isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : null;
+$username = isset($_POST["username"]) ? htmlspecialchars($_POST["username"]) : null;
+$password = isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : null;
 
 $req = $db->prepare("SELECT * FROM users WHERE username = ?");
-$req->execute([$config["DB"]["user"]]);
+$req->execute([$password]);
 $data = $req->fetch();
 
 
@@ -13,7 +13,7 @@ if($data) {
 
     var_dump($data);
 
-    if (password_verify($config["DB"]["password"], $data['password'])) {
+    if (password_verify($password, $data['password'])) {
         header("Location: ../register.php");
     } else {
         echo 'Wrong password';

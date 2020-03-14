@@ -4,7 +4,7 @@
 # Const
 ############################
 
-define("ROOT", ($_SERVER['DOCUMENT_ROOT'] . "/projetPHP"));
+define("ROOT", ($_SERVER['DOCUMENT_ROOT'] . "/www/Projet/ProjetPHP"));
 
 // Register, login errors code
 define("USR_NOT_VALID", 1);
