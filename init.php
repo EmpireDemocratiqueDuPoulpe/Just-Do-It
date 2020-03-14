@@ -1,6 +1,28 @@
 <?php
 
 ############################
+# Const
+############################
+
+define("ROOT", ($_SERVER['DOCUMENT_ROOT'] . "/projetPHP"));
+
+// Register, login errors code
+define("USR_NOT_VALID", 1);
+define("EMAIL_NOT_VALID", 2);
+define("PASSWORD_NOT_VALID", 3);
+
+define("USR_ALREADY_USED", 4);
+define("EMAIL_ALREADY_USED", 5);
+
+define("PASSWORD_DONT_MATCH", 6);
+define("PASSWORD_NOT_SECURE", 7);
+
+define("UNKNOWN_REGISTER_ERROR", 20);
+
+// Register, login success code
+define("REGISTRATION_COMPLETE", 1);
+
+############################
 # Session
 ############################
 
@@ -12,13 +34,13 @@ $is_connected = (isset($_SESSION["id"]) AND !empty($_SESSION["id"]));
 # Import config file
 ############################
 
-$config = parse_ini_file("./config/config.ini", true);
+$config = parse_ini_file(ROOT . "/config/config.ini", true);
 
 ############################
 # Load classes
 ############################
 
-function loadClasses($classname) { require_once "./classes/$classname.php"; }
+function loadClasses($classname) { require_once ROOT . "/classes/$classname.php"; }
 spl_autoload_register("loadClasses");
 
 ############################
@@ -44,13 +66,10 @@ $db = PDOFactory::mySql($config["DB"]["host"], $config["DB"]["dbname"], $config[
  *
  * @function    redirectTo
  * @param       string      $filePath   Path to the php file
- * @param       string      $getVars    (optional) GET vars
  * @return      void
  */
-function redirectTo($filePath, $getVars = "") {
+function redirectTo($filePath) {
 
-    $getVars = empty($getVars) ? "" : "?" . $getVars;
-
-    header("Location: $filePath$getVars");
+    header("Location: $filePath");
     exit;
 }
