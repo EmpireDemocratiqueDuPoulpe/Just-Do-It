@@ -18,7 +18,7 @@
             </div>
 
             <!-- Form -->
-            <form action="#" method="post">
+            <form action="./php/register_user.php" method="post">
 
                 <!-- Username -->
                 <div class="field">
