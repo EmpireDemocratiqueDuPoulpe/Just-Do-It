@@ -26,10 +26,7 @@ if (is_null($password))     { redirectTo("../login.php?error=".PASSWORD_NOT_VALI
 # Get user
 ############################
 
-$req = $db->prepare("SELECT user_id, username, email, password FROM users WHERE username = ?");
-$req->execute([$username]);
-$user = $req->fetch();
-$req->closeCursor();
+$user = PDOFactory::sendQuery($db, 'SELECT user_id, username, email, password FROM users WHERE username = :username', ["username" => $username])[0];
 
 if (!$user) {
     redirectTo("../login.php?error=".UNKNOWN_USER);

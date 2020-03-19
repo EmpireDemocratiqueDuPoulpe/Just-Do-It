@@ -50,4 +50,45 @@ abstract class PDOFactory {
             die($error->getCode().": ".$error->getMessage());
         }
     }
+
+    /**
+     * Send a query using PDO.
+     *
+     * This method send a query with all vars and
+     * it will return the response unless $return
+     * is false. This method is used to prevent
+     * code duplication and to simplify the way to
+     * send query.
+     *
+     * @function    sendQuery
+     * @access      public
+     * @param       PDO             $db         PDO Object
+     * @param       string          $sql        SQL Query to execute
+     * @param       array           $vars       Array of vars to add to the query
+     * @param       bool            $return     Should the method return the result of the query?
+     * @return      array|string|void           Array with SQL response, error message as string or nothing.
+     */
+    public static function sendQuery($db, $sql, $vars = [], $return = true) {
+
+        $query = $db->prepare($sql);
+        $result = [];
+
+        // Add vars
+        foreach ($vars as $name => $value) {
+
+            if      (is_int($value))    $type = PDO::PARAM_INT;
+            elseif  (is_bool($value))   $type = PDO::PARAM_BOOL;
+            else                        $type = PDO::PARAM_STR;
+
+            $query->bindValue(":$name", $value, $type);
+        }
+
+        // Execute query and get response
+        $query->execute();
+        if ($return) while ($d = $query->fetch(PDO::FETCH_ASSOC)) { $result[] = $d; }
+
+        // Stop the cursor and return the response
+        $query->closeCursor();
+        if ($return) return $result;
+    }
 }

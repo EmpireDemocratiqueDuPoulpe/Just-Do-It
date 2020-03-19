@@ -36,13 +36,7 @@ $usernameLen = strlen($username);
 if ($usernameLen < 1 OR $usernameLen > 32) { redirectTo("../register.php?error=".USR_NOT_VALID); }
 
 // Check availability
-$req = $db->prepare('SELECT user_id FROM users WHERE username = :username');
-$req->bindParam(":username", $username, PDO::PARAM_STR);
-$req->execute();
-
-$usrResult = $req->fetch();
-
-$req->closeCursor();
+$usrResult = PDOFactory::sendQuery($db, 'SELECT user_id FROM users WHERE username = :username', ["username" => $username]);
 
 if ($usrResult) { redirectTo("../register.php?error=".USR_ALREADY_USED); }
 
@@ -54,13 +48,7 @@ if ($usrResult) { redirectTo("../register.php?error=".USR_ALREADY_USED); }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { redirectTo("../register.php?error=".EMAIL_NOT_VALID); }
 
 // Check availability
-$req = $db->prepare('SELECT user_id FROM users WHERE email = :email');
-$req->bindParam(":email", $email, PDO::PARAM_STR);
-$req->execute();
-
-$emailResult = $req->fetch();
-
-$req->closeCursor();
+$emailResult = PDOFactory::sendQuery($db, 'SELECT user_id FROM users WHERE email = :email', ["email" => $email]);
 
 if ($emailResult) { redirectTo("../register.php?error=".EMAIL_ALREADY_USED); }
 
@@ -92,24 +80,16 @@ $password_hashed = password_hash($password_peppered, PASSWORD_ARGON2ID);
 ############################
 
 // Get last ID before query
-$req = $db->prepare('SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1');
-$req->execute();
-$lastIDBefore = $req->fetch();
-$req->closeCursor();
+$lastIDBefore = PDOFactory::sendQuery($db, 'SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1')[0]["user_id"];
 
 // Add user
-$req = $db->prepare('INSERT INTO users(username, email, password) VALUES (:username, :email, :password )');
-$req->bindParam(":username", $username, PDO::PARAM_STR);
-$req->bindParam(":email", $email, PDO::PARAM_STR);
-$req->bindParam(":password", $password_hashed, PDO::PARAM_STR);
-$req->execute();
-$req->closeCursor();
+$sql = 'INSERT INTO users(username, email, password) VALUES (:username, :email, :password )';
+$vars = [ "username" => $username, "email" => $email, "password" => $password_hashed ];
+
+PDOFactory::sendQuery($db, $sql, $vars, false);
 
 // Get last ID after query
-$req = $db->prepare('SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1');
-$req->execute();
-$lastIDAfter = $req->fetch();
-$req->closeCursor();
+$lastIDAfter = PDOFactory::sendQuery($db, 'SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1')[0]["user_id"];
 
 // Redirect to login page with error or success code
 if ($lastIDBefore === $lastIDAfter) { redirectTo("../register.php?error=".UNKNOWN_REGISTER_ERROR); }
