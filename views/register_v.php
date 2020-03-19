@@ -17,8 +17,11 @@
                 <h1>Inscription</h1>
             </div>
 
+            <!-- Errors and success messages -->
+            <?= $errorsSuccessMsg ?>
+
             <!-- Form -->
-            <form action="./php/register_user.php" method="post">
+            <form action="./php/register_user.php" method="post" <?php if($errorsSuccessMsg) echo 'class="errorMsgAbove"'?>>
 
                 <!-- Username -->
                 <div class="field">

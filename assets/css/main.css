@@ -7,9 +7,41 @@ body {
     background: #F9F9F9;
 }
 
+/*** Success and errors messages ***/
+.errorBox, .successBox {
+    box-sizing: border-box;
+    width: 90%;
+    line-height: 1.5em;
+    margin: 20px auto 0 auto;
+    padding: 5px 10px;
+    word-break: break-word;
+}
+
+.errorBox {
+    background: #f44336;
+    color: #FFFFFF;
+}
+
+.successBox {
+    background: #4CAF50;
+    color: #FFFFFF;
+}
+
+.errorBox a,
+.successBox a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.errorBox a:hover,
+.successBox a:hover {
+    text-decoration: underline;
+}
+
 /*** Forms ***/
 /* Form */
-form { margin-top: 100px; }
+form                { margin-top: 100px; }
+form.errorMsgAbove  {margin-top: 50px}
 
 /* Fields and double fields */
 .field {

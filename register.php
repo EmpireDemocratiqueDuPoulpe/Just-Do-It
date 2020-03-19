@@ -8,6 +8,12 @@ require_once "./init.php";
 if ($is_connected) redirectTo("./index.php");
 
 ############################
+# Get errors and success messages
+############################
+
+$errorsSuccessMsg = getErrorsSuccess();
+
+############################
 # Import the view
 ############################
 
