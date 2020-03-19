@@ -1,4 +1,15 @@
 <?php
+/**
+ * Register a user.
+ *
+ * This script get POST vars sent by the form and register a new user if everything is good. All const are referenced in
+ * init.php.
+ *
+ * @author      Alexis L. <293287@supinfo>
+ * @version     1.0
+ * @see         init.php
+ */
+
 require_once "../init.php";
 
 ############################
@@ -25,7 +36,7 @@ $usernameLen = strlen($username);
 if ($usernameLen < 1 OR $usernameLen > 32) { redirectTo("../register.php?error=".USR_NOT_VALID); }
 
 // Check availability
-$req = $db->prepare('SELECT id FROM users WHERE username = :username');
+$req = $db->prepare('SELECT user_id FROM users WHERE username = :username');
 $req->bindParam(":username", $username, PDO::PARAM_STR);
 $req->execute();
 
@@ -43,7 +54,7 @@ if ($usrResult) { redirectTo("../register.php?error=".USR_ALREADY_USED); }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { redirectTo("../register.php?error=".EMAIL_NOT_VALID); }
 
 // Check availability
-$req = $db->prepare('SELECT id FROM users WHERE email = :email');
+$req = $db->prepare('SELECT user_id FROM users WHERE email = :email');
 $req->bindParam(":email", $email, PDO::PARAM_STR);
 $req->execute();
 
@@ -81,7 +92,7 @@ $password_hashed = password_hash($password_peppered, PASSWORD_ARGON2ID);
 ############################
 
 // Get last ID before query
-$req = $db->prepare('SELECT id FROM users ORDER BY id DESC LIMIT 1');
+$req = $db->prepare('SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1');
 $req->execute();
 $lastIDBefore = $req->fetch();
 $req->closeCursor();
@@ -95,11 +106,11 @@ $req->execute();
 $req->closeCursor();
 
 // Get last ID after query
-$req = $db->prepare('SELECT id FROM users ORDER BY id DESC LIMIT 1');
+$req = $db->prepare('SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1');
 $req->execute();
 $lastIDAfter = $req->fetch();
 $req->closeCursor();
 
 // Redirect to login page with error or success code
 if ($lastIDBefore === $lastIDAfter) { redirectTo("../register.php?error=".UNKNOWN_REGISTER_ERROR); }
-else                                { redirectTo("../register.php?success=".REGISTRATION_COMPLETE); }
+else                                { redirectTo("../login.php?success=".REGISTRATION_COMPLETE); }
