@@ -4,7 +4,7 @@
 # Const
 ############################
 
-define("ROOT", ($_SERVER['DOCUMENT_ROOT'] . "/ProjetPHP"));
+define("ROOT", __DIR__);
 
 /** Register, login errors code
  *
