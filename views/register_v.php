@@ -1,13 +1,13 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 
 <html lang="fr">
     <head>
         <title>ProjetPHP - Inscription</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="./assets/css/normalize.css"/>
-        <link rel="stylesheet" href="./assets/css/main.css"/>
+        <link rel="stylesheet" href="./assets/css/font-awesome.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap"/>
-
+        <link rel="stylesheet" href="./assets/css/main.css"/>
     </head>
     <body id="registerBody">
         <!-- Register container -->
