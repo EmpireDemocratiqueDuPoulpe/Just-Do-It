@@ -4,7 +4,7 @@
 # Const
 ############################
 
-define("ROOT", __DIR__);
+define("ROOT", str_replace('\\', '/', __DIR__));
 
 /** Register, login errors code
  *
