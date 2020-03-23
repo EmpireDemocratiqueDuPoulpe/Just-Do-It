@@ -12,5 +12,3 @@ if (!$is_connected) redirectTo("./login.php");
 ############################
 
 require_once "./views/index_v.php";
-
-var_dump($_SESSION);

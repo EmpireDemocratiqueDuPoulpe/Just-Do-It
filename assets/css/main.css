@@ -66,6 +66,7 @@ form.errorMsgAbove  {margin-top: 50px}
 
 /* Inputs */
 .field input {
+    box-sizing: border-box;
     display: block;
     width: 100%;
     height: 50px;
@@ -94,7 +95,7 @@ input[type=submit] {
     border-radius: 5px;
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 1em;
-    transition: background-color 500ms;
+    transition: background-color 250ms;
     cursor: pointer;
 }
 
@@ -107,34 +108,34 @@ input[type=submit]:active { background-color: #884ac3; padding: 0; transition-du
 #switchRegLog a:hover { text-decoration: underline; }
 
 /***********************************
- * Register page
+ * Register and login page
  ***********************************/
 
-#registerBody {
+#registerBody, #loginBody {
     width: 100%;
     height: 100%;
     background: #FFFFFF;
 }
 
-/*** Register container ***/
-#registerContainer {
+/*** Container ***/
+#registerContainer, #loginContainer {
     width: 768px;
     height: 100%;
 }
 
-/* Register header */
-#registerHeader {
+/* Header */
+#registerHeader, #loginHeader {
     text-align: center;
     padding-top: 75px;
 }
 
-#registerHeader h1 {
+#registerHeader h1, #loginHeader h1 {
     font-family: 'Montserrat', Arial, sans-serif;
     margin: 0;
 }
 
-/*** Register img ***/
-#registerRightImg {
+/*** Img ***/
+#registerRightImg, #loginRightImg {
     position: fixed;
     top: 0;
     right: 0;
@@ -142,4 +143,63 @@ input[type=submit]:active { background-color: #884ac3; padding: 0; transition-du
     left: 768px;
     background: url("../images/registerImg.jpg") no-repeat;
     background-size: cover;
+}
+
+/***********************************
+ * Index
+ ***********************************/
+
+/*** Header ***/
+header {
+    height: 95px;
+    background: #A94CE6;
+    color: #FFFFFF;
+    -webkit-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+#logo {
+    display: inline-block;
+    float: left;
+    width: 61px;
+    height: 61px;
+    margin: 17px 0 17px 115px;
+    /**********/
+    border-radius: 50%;
+    background: #9744ce;
+    /**********/
+}
+
+/* User */
+#user {
+    display: inline-block;
+    float: right;
+    width: 275px;
+    height: 61px;
+    margin: 17px 115px 17px 0;
+}
+
+#user p {
+    display: inline-block;
+    width: 65%;
+    font-size: 1.25em;
+}
+
+#disconnect {
+    display: inline-block;
+    float: right;
+    text-align: center;
+    width: 61px;
+    height: 61px;
+    line-height: 61px;
+    font-size: 2.5em;
+    background: #9744ce;
+    color: #551A8B;
+    transition: color 250ms;
+}
+
+#disconnect:hover {
+    color: #481a7e;
 }
