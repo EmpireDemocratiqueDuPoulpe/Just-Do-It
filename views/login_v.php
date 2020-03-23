@@ -1,19 +1,19 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 
 <html lang="fr">
     <head>
         <title>ProjetPHP - Connexion</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="./assets/css/normalize.css"/>
-        <link rel="stylesheet" href="./assets/css/main.css"/>
+        <link rel="stylesheet" href="./assets/css/font-awesome.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap"/>
-
+        <link rel="stylesheet" href="./assets/css/main.css"/>
     </head>
-    <body id="registerBody">
+    <body id="loginBody">
         <!-- Register container -->
-        <div id="registerContainer">
+        <div id="loginContainer">
             <!-- Title -->
-            <div id="registerHeader">
+            <div id="loginHeader">
                 <h1>Connexion</h1>
             </div>
 
@@ -25,17 +25,14 @@
 
                 <!-- Username -->
                 <div class="field">
-                    <label for="rUsername">Nom d'utilisateur</label>
-                    <input type="text" id="rUsername" name="username" placeholder=" " minlength="1" maxlength="32" onkeydown="this.setCustomValidity('');" required/>
+                    <label for="lUsername">Nom d'utilisateur</label>
+                    <input type="text" id="lUsername" name="username" placeholder=" " minlength="1" maxlength="32" onkeydown="this.setCustomValidity('');" required/>
                 </div>
 
-                <!-- Passwords -->
+                <!-- Password -->
                 <div class="field">
-                    <div>
-                        <label for="rPassword">Mot de passe</label>
-                        <input type="password" id="rPassword" name="password" placeholder=" " minlength="8" maxlength="255" onkeydown="this.setCustomValidity('');" required/>
-                    </div>
-
+                    <label for="lPassword">Mot de passe</label>
+                    <input type="password" id="lPassword" name="password" placeholder=" " minlength="8" maxlength="255" onkeydown="this.setCustomValidity('');" required/>
                 </div>
 
                 <input type="submit" value="CONNEXION"/>
@@ -45,7 +42,7 @@
         </div>
 
         <!-- Right image -->
-        <div id="registerRightImg"></div>
+        <div id="loginRightImg"></div>
 
         <!-- Scripts -->
         <script src="./assets/js/FormChecker.js"></script>
