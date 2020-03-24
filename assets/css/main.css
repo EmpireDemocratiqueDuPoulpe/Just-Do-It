@@ -152,7 +152,10 @@ input[type=submit]:active { background-color: #884ac3; padding: 0; transition-du
 /*** Header ***/
 header {
     height: 95px;
-    background: #A94CE6;
+    /* background: #A94CE6; */
+    background: #DA22FF;
+    background: -webkit-linear-gradient(to right, #9733EE, #DA22FF);
+    background: linear-gradient(to right, #9733EE, #DA22FF);
     color: #FFFFFF;
     -webkit-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
@@ -168,7 +171,7 @@ header {
     margin: 17px 0 17px 115px;
     /**********/
     border-radius: 50%;
-    background: #9744ce;
+    background: #8d33e4;
     /**********/
 }
 
@@ -184,7 +187,13 @@ header {
 #user p {
     display: inline-block;
     width: 65%;
-    font-size: 1.25em;
+    height: 61px;
+    line-height: 61px;
+    margin: 0;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #disconnect {
@@ -195,11 +204,168 @@ header {
     height: 61px;
     line-height: 61px;
     font-size: 2.5em;
-    background: #9744ce;
-    color: #551A8B;
+    background: #c622eb;
+    color: #9e22c3;
     transition: color 250ms;
 }
 
 #disconnect:hover {
-    color: #481a7e;
+    color: #8a22af;
 }
+
+/*** Todo list ***/
+#todoListContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.todoList {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 300px;
+    height: 326px;
+    margin: 20px 0 10px 10px;
+    overflow: hidden;
+    border: thin #e5e5e5 solid;
+    border-radius: 5px;
+}
+
+/* Colors */
+.todoList.purple .tlHead {
+    background: #8E2DE2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.blue .tlHead {
+    background: #36D1DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.red .tlHead {
+    background: #EB3349;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+/** ? **/
+.todoList.orange .tlHead {
+    background: #FF416C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+/** ? **/
+
+.todoList.pinkorange .tlHead {
+    background: #ee0979;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.coral .tlHead {
+    background: #ff9966;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.yellow .tlHead {
+    background: #F7971E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.green .tlHead {
+    background: #00b09b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.grey .tlHead {
+    background: #606c88;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+.todoList.black .tlHead {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+}
+
+/*** Todo list Header ***/
+.tlHead {
+    text-align: center;
+    font-size: 0.75em;
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.tlHead h2 {
+    margin: 0;
+}
+
+/*** Todo list Body ***/
+.tlBody {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+}
+
+/* List */
+.tlBody ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Checkboxes and labels */
+.tlBody ul input[type=checkbox] {
+    display: none;
+}
+
+.tlBody ul label {
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 5px;
+    background-color: #F9F9F9;
+    border-bottom: thin #e5e5e5 solid;
+    transition: color 250ms;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tlBody ul li:last-child label {
+    border-bottom: none;
+}
+
+.tlBody ul input[type=checkbox]:checked + label {
+    color: #4CAF50;
+}
+
+.tlBody ul label:hover {
+    background-color: #e5e5e5;
+}
+
+/* Icon before labels */
+.tlBody ul label:before { font-family: 'Font Awesome\ 5 Free', sans-serif; content: "\f0c8\2003"; }
+.tlBody ul input[type=checkbox]:checked + label:before { content: "\f14a\2003"; }
