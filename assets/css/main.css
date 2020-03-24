@@ -334,6 +334,10 @@ header {
     list-style: none;
 }
 
+.tlBody li {
+    border-bottom: thin #e5e5e5 solid;
+}
+
 /* Checkboxes and labels */
 .tlBody ul input[type=checkbox] {
     display: none;
@@ -346,7 +350,6 @@ header {
     line-height: 50px;
     padding: 0 5px;
     background-color: #F9F9F9;
-    border-bottom: thin #e5e5e5 solid;
     transition: color 250ms;
     cursor: pointer;
     overflow: hidden;
