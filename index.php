@@ -34,10 +34,13 @@ foreach ($todoLists as $todoList) {
     ?>
         <div class="todoList <?= $todo_color ?>">
             <div class="tlHead">
+
                 <h2><?= $todo_name ?></h2>
             </div>
             <div class="tlBody">
-                <ul>
+                <ul >
+
+
                     <?php
                         $tasks_limit = 4;
                         $tasks_count = 0;
@@ -62,11 +65,12 @@ foreach ($todoLists as $todoList) {
 
                         // "See more" button
                         $see_more_id = "t".$todo_id."SeeMore";
-                        echo '<a href="#" class="seeMore"><li><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
+                        echo '<a href="todo_page.php" class="seeMore"><li><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
                     ?>
                 </ul>
             </div>
         </div>
+
     <?php
 }
 
