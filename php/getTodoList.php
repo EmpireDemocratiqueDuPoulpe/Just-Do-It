@@ -32,6 +32,9 @@ foreach ($todoLists as $todoList) {
     // Process HTML code of the todo list
     ?>
         <div class="todoList <?= $todo_color ?>">
+            <div class="tlDeleteContainer" data-list-id="<?= $todo_id ?>">
+                <i class="fas fa-trash"></i>
+            </div>
             <div class="tlHead">
                 <h2><?= $todo_name ?></h2>
             </div>

@@ -226,12 +226,13 @@ header {
 
 .todoList, #addTodoList {
     box-sizing: border-box;
+    position: relative;
     flex-grow: 0;
     flex-shrink: 0;
     width: 300px;
     height: 335px;
     margin: 20px 0 10px 10px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     border: thin #e5e5e5 solid;
     border-radius: 5px;
 }
@@ -292,7 +293,8 @@ header {
 
 /* Colors */
 .todoList.purple .tlHead,
-.todoList.purple .seeMore {
+.todoList.purple .seeMore,
+.todoList.purple .tlDeleteContainer {
     background: #8E2DE2;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -300,7 +302,8 @@ header {
 }
 
 .todoList.blue .tlHead,
-.todoList.blue .seeMore {
+.todoList.blue .seeMore,
+.todoList.blue .tlDeleteContainer {
     background: #36D1DC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -308,7 +311,8 @@ header {
 }
 
 .todoList.red .tlHead,
-.todoList.red .seeMore {
+.todoList.red .seeMore,
+.todoList.red .tlDeleteContainer {
     background: #EB3349;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -317,7 +321,8 @@ header {
 
 /** ? **/
 .todoList.orange .tlHead,
-.todoList.orange .seeMore {
+.todoList.orange .seeMore,
+.todoList.orange .tlDeleteContainer {
     background: #FF416C;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -326,7 +331,8 @@ header {
 /** ? **/
 
 .todoList.pinkorange .tlHead,
-.todoList.pinkorange .seeMore {
+.todoList.pinkorange .seeMore,
+.todoList.pinkorange .tlDeleteContainer {
     background: #ee0979;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -334,7 +340,8 @@ header {
 }
 
 .todoList.coral .tlHead,
-.todoList.coral .seeMore {
+.todoList.coral .seeMore,
+.todoList.coral .tlDeleteContainer {
     background: #ff9966;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -342,7 +349,8 @@ header {
 }
 
 .todoList.yellow .tlHead,
-.todoList.yellow .seeMore {
+.todoList.yellow .seeMore,
+.todoList.yellow .tlDeleteContainer {
     background: #F7971E;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -350,7 +358,8 @@ header {
 }
 
 .todoList.green .tlHead,
-.todoList.green .seeMore {
+.todoList.green .seeMore,
+.todoList.green .tlDeleteContainer {
     background: #00b09b;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -358,7 +367,8 @@ header {
 }
 
 .todoList.grey .tlHead,
-.todoList.grey .seeMore {
+.todoList.grey .seeMore,
+.todoList.grey .tlDeleteContainer {
     background: #606c88;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -366,7 +376,8 @@ header {
 }
 
 .todoList.black .tlHead,
-.todoList.black .seeMore {
+.todoList.black .seeMore,
+.todoList.black .tlDeleteContainer {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -384,6 +395,46 @@ header {
 
 .tlHead h2 {
     margin: 0;
+}
+
+/* Delete button */
+.todoList:hover .tlDeleteContainer {
+    opacity: 1;
+}
+
+.tlDeleteContainer {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.9em;
+    border-radius: 50%;
+    transition: opacity 100ms;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.tlDeleteContainer:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    -webkit-box-shadow: 1px 1px 1px 0 #3A3A3A;
+    -moz-box-shadow: 1px 1px 1px 0 #3A3A3A;
+    box-shadow: 1px 1px 1px 0 #3A3A3A;
+    opacity: 0;
+    transition: opacity 250ms;
+}
+
+.tlDeleteContainer:hover:before {
+    opacity: 1;
 }
 
 /*** Todo list Body ***/

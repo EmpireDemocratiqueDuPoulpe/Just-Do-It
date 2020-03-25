@@ -1,14 +1,15 @@
 window.addEventListener("load", function () {
-    addEventOnButton();
+    addAddEvent();
+    addDeleteEvent();
 });
 
 /**
  * Add event on "Add list" button.
  *
- * @function    addEventOnButton
+ * @function    addAddEvent
  * @return      {void}
  */
-function addEventOnButton() {
+function addAddEvent() {
 
     // Get "add Todo list" div and init two vars which contain HTML of the div
     const addTodoList = document.querySelector("#addTodoList");
@@ -34,6 +35,29 @@ function addEventOnButton() {
         addTodoList.outerHTML = divContent2;
 
         addTodoList.classList.add("noHover");
+    });
+}
+
+/**
+ * Add event on "Delete list" button.
+ *
+ * @function    addDeleteEvent
+ * @return      {void}
+ */
+function addDeleteEvent() {
+
+    const todoListContainer = document.querySelector("#todoListContainer");
+
+    document.querySelectorAll(".tlDeleteContainer").forEach(function (el) {
+
+        el.addEventListener("click", function () {
+
+            const ajax = new AJAX();
+            ajax.call("./php/deleteTodoList.php", "POST", [this.dataset.listId])
+                .then(reloadTodoLists, todoListErrors);
+
+            //this.parentNode.remove();
+        });
     });
 }
 
@@ -74,14 +98,16 @@ function reloadTodoLists() {
         .then(function (lists) {
 
             document.querySelector("#todoListContainer").innerHTML = String(lists);
-            addEventOnButton();
+            addAddEvent();
+            addDeleteEvent();
 
         }, todoListErrors);
 }
 
 /**
  * Show an error if it's not possible
- * to add a list or to update them.
+ * to add a list, to update them or to
+ * delete one.
  *
  * @function    todoListErrors
  * @param       {string}        status      Error status

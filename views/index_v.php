@@ -17,6 +17,6 @@
         <!-- Scripts -->
         <script src="./assets/js/bluebird.min.js"></script>
         <script src="./assets/js/AJAX.js"></script>
-        <script src="./assets/js/AddTodoList.js"></script>
+        <script src="./assets/js/TodoList.js"></script>
     </body>
 </html>
