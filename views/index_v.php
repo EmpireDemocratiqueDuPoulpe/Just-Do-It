@@ -12,12 +12,11 @@
         <!-- Todo list -->
         <div id="todoListContainer">
             <?= $todoListsHTML; ?>
-
-            <div id="addTodoList">
-                <div>
-                    <p><i class="fas fa-plus-square"></i> Ajouter une liste</p>
-                </div>
-            </div>
         </div>
+
+        <!-- Scripts -->
+        <script src="./assets/js/bluebird.min.js"></script>
+        <script src="./assets/js/AJAX.js"></script>
+        <script src="./assets/js/AddTodoList.js"></script>
     </body>
 </html>

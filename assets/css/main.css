@@ -41,7 +41,8 @@ body {
 /*** Forms ***/
 /* Form */
 form                { margin-top: 100px; }
-form.errorMsgAbove  {margin-top: 50px}
+form.errorMsgAbove  { margin-top: 50px; }
+form.noUpperMargin  { margin-top: 0; }
 
 /* Fields and double fields */
 .field {
@@ -77,10 +78,10 @@ form.errorMsgAbove  {margin-top: 50px}
     border-bottom: 2px #707070 solid;
 }
 
-.field input:required { box-shadow:none; }
-.field input:invalid { border-color: #ff4444; }
-.field input:placeholder-shown { border-color: #707070; }
-.field input:focus { border-color: #A94CE6; }
+.field input:required           { box-shadow:none; }
+.field input:invalid            { border-color: #ff4444; }
+.field input:placeholder-shown  { border-color: #707070; }
+.field input:focus              { border-color: #A94CE6; }
 
 /* Submit button */
 input[type=submit] {
@@ -246,6 +247,15 @@ header {
     transition: background-color 250ms;
 }
 
+#addTodoList:not(.noHover):hover {
+    background-color: #f0f0f0;
+}
+
+#addTodoList.noHover {
+    cursor: default;
+    border: thin #e5e5e5 solid;
+}
+
 /* see: https://css-tricks.com/centering-in-the-unknown/ */
 #addTodoList:before {
     content: '';
@@ -262,19 +272,23 @@ header {
 }
 /* end see */
 
-#addTodoListV1 {
-    height: 100%;
-    visibility: visible;
+.todoList .field {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 9px 0;
 }
 
-#addTodoListV1:hover {
-    background-color: #f0f0f0;
+.todoList .field input {
+    width: 80%;
+    height: 30px;
+    margin: 0 auto;
+    background: none;
+    color: #FFFFFF;
 }
 
-#addTodoListV2 {
-    height: 0;
-    visibility: hidden;
-}
+.field input:placeholder-shown  { border-color: #354261; }
+.field input:focus              { border-color: #FFFFFF; }
 
 /* Colors */
 .todoList.purple .tlHead,
@@ -426,7 +440,7 @@ header {
 .tlBody ul label:before { font-family: 'Font Awesome\ 5 Free', sans-serif; content: "\f0c8\2003"; }
 .tlBody ul input[type=checkbox]:checked + label:before { content: "\f14a\2003"; }
 
-/* "See more" button */
+/* "See more" and "Add list" buttons */
 .seeMore {
     position: relative;
     display: block;
