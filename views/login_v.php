@@ -3,11 +3,7 @@
 <html lang="fr">
     <head>
         <title>ProjetPHP - Connexion</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="./assets/css/normalize.css"/>
-        <link rel="stylesheet" href="./assets/css/font-awesome.css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap"/>
-        <link rel="stylesheet" href="./assets/css/main.css"/>
+        <?php include_once(ROOT."/views/models/head.php"); ?>
     </head>
     <body id="loginBody">
         <!-- Register container -->
