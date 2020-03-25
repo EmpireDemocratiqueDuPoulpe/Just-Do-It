@@ -49,8 +49,67 @@ class TodoLists {
 
         return PDOFactory::sendQuery(
             $this->_db,
-            "SELECT list_id, name, color FROM todo_lists WHERE user_id = :user_id",
+            'SELECT list_id, name, color FROM todo_lists WHERE user_id = :user_id ORDER BY list_id',
             ["user_id" => (int) $user_id]
         );
+    }
+
+    /**
+     * Add a todo list.
+     *
+     * This function take the new todo list name, the
+     * user id and the base color and add it into the
+     * database.
+     *
+     * @function    add
+     * @access      public
+     * @param       string          $title    Title of the todo list
+     * @param       int             $user_id  User id who own this list
+     * @param       string          $color    Base color of the todo list
+     * @return      boolean
+     */
+    public function add($title, $user_id, $color) {
+
+        // Get last ID before query
+        $lastIDBefore = PDOFactory::sendQuery($this->_db, 'SELECT list_id FROM todo_lists ORDER BY list_id DESC LIMIT 1')[0]["list_id"];
+
+        // Add todo list
+        PDOFactory::sendQuery(
+            $this->_db,
+            'INSERT INTO todo_lists(user_id, name, color) VALUES (:user_id, :name, :color)',
+            ["user_id" => (int) $user_id, "name" => $title, "color" => $color],
+            false
+        );
+
+        // Get last ID after query
+        $lastIDAfter = PDOFactory::sendQuery($this->_db, 'SELECT list_id FROM todo_lists ORDER BY list_id DESC LIMIT 1')[0]["list_id"];
+
+        // Return result
+        return $lastIDBefore !== $lastIDAfter;
+    }
+
+    /**
+     * Delete a todo list.
+     *
+     * This function take the todo list id and delete
+     * it from the database.
+     *
+     * @function    delete
+     * @access      public
+     * @param       int             $list_id  List id targeted for deletion
+     * @return      boolean
+     */
+    public function delete($list_id) {
+
+        // Delete todo list
+        PDOFactory::sendQuery(
+            $this->_db,
+            'DELETE FROM todo_lists WHERE list_id = :list_id',
+            ["list_id" => (int) $list_id],
+            false
+        );
+
+        // Return result
+        return (bool) PDOFactory::sendQuery($this->_db, 'SELECT list_id FROM todo_lists WHERE list_id = :list_id', ["list_id" => $list_id]);
     }
 }
