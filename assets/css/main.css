@@ -223,33 +223,68 @@ header {
     padding: 0 15px;
 }
 
-.todoList {
+.todoList, #addTodoList {
+    box-sizing: border-box;
     flex-grow: 0;
     flex-shrink: 0;
     width: 300px;
-    height: 326px;
+    height: 335px;
     margin: 20px 0 10px 10px;
     overflow: hidden;
     border: thin #e5e5e5 solid;
     border-radius: 5px;
 }
 
+/* Add todo list block */
+#addTodoList {
+    text-align: center;
+    color: #afafaf;
+    border-style: dashed;
+    border-width: medium;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 250ms;
+}
+
+#addTodoList:hover {
+    background-color: #f0f0f0;
+}
+
+/* see: https://css-tricks.com/centering-in-the-unknown/ */
+#addTodoList:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+#addTodoList div {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+}
+/* end see */
+
 /* Colors */
-.todoList.purple .tlHead {
+.todoList.purple .tlHead,
+.todoList.purple .seeMore {
     background: #8E2DE2;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.blue .tlHead {
+.todoList.blue .tlHead,
+.todoList.blue .seeMore {
     background: #36D1DC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.red .tlHead {
+.todoList.red .tlHead,
+.todoList.red .seeMore {
     background: #EB3349;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -257,7 +292,8 @@ header {
 }
 
 /** ? **/
-.todoList.orange .tlHead {
+.todoList.orange .tlHead,
+.todoList.orange .seeMore {
     background: #FF416C;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -265,42 +301,48 @@ header {
 }
 /** ? **/
 
-.todoList.pinkorange .tlHead {
+.todoList.pinkorange .tlHead,
+.todoList.pinkorange .seeMore {
     background: #ee0979;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.coral .tlHead {
+.todoList.coral .tlHead,
+.todoList.coral .seeMore {
     background: #ff9966;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.yellow .tlHead {
+.todoList.yellow .tlHead,
+.todoList.yellow .seeMore {
     background: #F7971E;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.green .tlHead {
+.todoList.green .tlHead,
+.todoList.green .seeMore {
     background: #00b09b;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.grey .tlHead {
+.todoList.grey .tlHead,
+.todoList.grey .seeMore {
     background: #606c88;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
 }
 
-.todoList.black .tlHead {
+.todoList.black .tlHead,
+.todoList.black .seeMore {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -335,7 +377,13 @@ header {
 }
 
 .tlBody li {
+    background-color: #F9F9F9;
     border-bottom: thin #e5e5e5 solid;
+
+}
+
+.tlBody li:hover {
+    background-color: #e5e5e5;
 }
 
 /* Checkboxes and labels */
@@ -349,7 +397,6 @@ header {
     height: 50px;
     line-height: 50px;
     padding: 0 5px;
-    background-color: #F9F9F9;
     transition: color 250ms;
     cursor: pointer;
     overflow: hidden;
@@ -357,18 +404,54 @@ header {
     white-space: nowrap;
 }
 
-.tlBody ul li:last-child label {
-    border-bottom: none;
+.tlBody ul li:nth-last-child(-n+2) {
+    border-bottom: none !important;
 }
 
 .tlBody ul input[type=checkbox]:checked + label {
     color: #4CAF50;
 }
 
-.tlBody ul label:hover {
-    background-color: #e5e5e5;
-}
-
 /* Icon before labels */
 .tlBody ul label:before { font-family: 'Font Awesome\ 5 Free', sans-serif; content: "\f0c8\2003"; }
 .tlBody ul input[type=checkbox]:checked + label:before { content: "\f14a\2003"; }
+
+/* "See more" button */
+.seeMore {
+    position: relative;
+    margin-top: 10px;
+    border-bottom: none !important;
+    cursor: pointer;
+}
+
+.seeMore:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(229,229,229,1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(229,229,229,1);
+    box-shadow: 5px 5px 5px 0px rgba(229,229,229,1);
+    opacity: 0;
+    transition: opacity 250ms;
+}
+
+.seeMore:hover:before {
+    opacity: 1;
+}
+
+.seeMore a {
+    display: block;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.seeMore label {
+    background: none !important;
+}
+
+.seeMore label:before                           { content: "" !important; }
+.seeMore input[type=checkbox]:checked + label   { color: #FFFFFF !important; }

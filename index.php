@@ -59,6 +59,10 @@ foreach ($todoLists as $todoList) {
 
                             $tasks_count++;
                         }
+
+                        // "See more" button
+                        $see_more_id = "t".$todo_id."SeeMore";
+                        echo '<li class="seeMore"><a href="#"><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></a></li>';
                     ?>
                 </ul>
             </div>
