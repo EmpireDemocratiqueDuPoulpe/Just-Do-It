@@ -55,6 +55,27 @@ class TodoLists {
     }
 
     /**
+     * Get a todo list.
+     *
+     * This function get a todo list by is id and owned
+     * by a user.
+     *
+     * @function    get
+     * @access      public
+     * @param       int|string      $user_id    User id
+     * @param       int|string      $list_id    List id
+     * @return      array|string
+     */
+    public function get($user_id, $list_id) {
+
+        return PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT name, color FROM todo_lists WHERE user_id = :user_id AND list_id = :list_id',
+            ["user_id" => (int) $user_id, "list_id" => (int) $list_id]
+        );
+    }
+
+    /**
      * Add a todo list.
      *
      * This function take the new todo list name, the
