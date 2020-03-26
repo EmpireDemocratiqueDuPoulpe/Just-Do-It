@@ -46,6 +46,12 @@ define("CANNOT_DISCONNECT", 40);
  */
 define("REGISTRATION_COMPLETE", 100);
 
+/** Todo lists errors code
+ *
+ * TODO_LIST_NOT_FOUND :    Invalid/empty username
+ */
+define("TODO_LIST_NOT_FOUND", 200);
+
 ############################
 # Session
 ############################
@@ -126,6 +132,7 @@ function getErrorsSuccess() {
         UNKNOWN_USER => "Le nom d'utilisateur renseign&eacute; n'existe pas.",
         CANNOT_DISCONNECT => "Erreur inconnue, impossible de finaliser la d&eacute;connexion. Veuillez r&eacute;essayer plus tard ou contactez le <a href=\"#\">support</a>.",
         REGISTRATION_COMPLETE => "Inscription r&eacute;ussie ! Vous pouvez d&eacute;sormais vous connecter.",
+        TODO_LIST_NOT_FOUND => "La todo list n'existe pas.<br><a href=\"./index.php\"><i class=\"fas fa-long-arrow-alt-left\"></i> Retour aux todo lists</a>",
         "none" => "<em>Un probl&egrave;me est survenu lors de l'affichage de ce message</em>"
     ];
 
