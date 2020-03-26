@@ -24,19 +24,19 @@ ob_start();
 foreach ($todoLists as $todoList) {
 
     // Get formatted todo list properties
-    $todo_id = $todoList["list_id"];
-    $todo_name = htmlspecialchars($todoList["name"]);
-    $todo_color = strlen($todoList["color"]) != 0 ? htmlspecialchars($todoList["color"]) : "grey";
-    $todo_tasks = array_keys(array_column($tasksList, 'list_id'), $todo_id);
+    $list_id = $todoList["list_id"];
+    $list_name = htmlspecialchars($todoList["name"]);
+    $list_color = strlen($todoList["color"]) != 0 ? htmlspecialchars($todoList["color"]) : "grey";
+    $list_tasks = array_keys(array_column($tasksList, 'list_id'), $list_id);
 
     // Process HTML code of the todo list
     ?>
-        <div class="todoList <?= $todo_color ?>">
-            <div class="tlDeleteContainer" data-list-id="<?= $todo_id ?>">
+        <div class="todoList <?= $list_color ?>">
+            <div class="tlDeleteContainer" data-list-id="<?= $list_id ?>">
                 <i class="fas fa-trash"></i>
             </div>
             <div class="tlHead">
-                <h2><?= $todo_name ?></h2>
+                <h2><?= $list_name ?></h2>
             </div>
             <div class="tlBody">
                 <ul>
@@ -45,7 +45,7 @@ foreach ($todoLists as $todoList) {
                         $tasks_count = 0;
 
                         // Add tasks
-                        foreach ($todo_tasks as $task) {
+                        foreach ($list_tasks as $task) {
 
                             // Prevent to display too many tasks
                             if ($tasks_count == $tasks_limit) break;
@@ -55,7 +55,7 @@ foreach ($todoLists as $todoList) {
                             $task_id = $task["task_id"];
                             $task_name = htmlspecialchars($task["name"]);
                             $task_status = $task["status"] == "1" ? "checked" : "";
-                            $HTMLid = "l" . $todo_id . "t" . $task_id;
+                            $HTMLid = "l" . $list_id . "t" . $task_id;
 
                             echo '<li><input type="checkbox" id="'.$HTMLid.'" '.$task_status.'/><label for="'.$HTMLid.'">'.$task_name.'</label></li>';
 
@@ -63,8 +63,8 @@ foreach ($todoLists as $todoList) {
                         }
 
                         // "See more" button
-                        $see_more_id = "t".$todo_id."SeeMore";
-                        echo '<a href="#" class="seeMore"><li><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
+                        $see_more_id = "t".$list_id."SeeMore";
+                        echo '<a href="./view_todo_list.php?list_id='.$list_id.'" class="seeMore"><li><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
                     ?>
                 </ul>
             </div>
