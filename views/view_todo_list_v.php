@@ -26,7 +26,7 @@
                     </div>
 
                     <!-- Todo list color -->
-                    <div class="field">
+                    <div class="field inline">
                         <label for="tColor">Couleur :</label>
 
                         <!-- Color selector -->

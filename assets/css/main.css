@@ -58,6 +58,11 @@ form.noUpperMargin  { margin-top: 0; }
 
 .field.double div { width: 190px; }
 
+.field.inline label,
+.field.inline input:not(.cSRadio) {
+    display: inline-block;
+}
+
 /* Label */
 .field label {
     display: block;
@@ -288,8 +293,8 @@ header {
     color: #FFFFFF;
 }
 
-.field input:placeholder-shown  { border-color: #354261; }
-.field input:focus              { border-color: #FFFFFF; }
+.todoList .field input:placeholder-shown  { border-color: #354261; }
+.todoList .field input:focus              { border-color: #FFFFFF; }
 
 /* Colors */
 .todoList.purple .tlHead,
@@ -468,7 +473,7 @@ header {
 }
 
 .tlBody li:hover {
-    background-color: #e5e5e5;
+    background-color: #efefef;
 }
 
 /* Checkboxes and labels */
@@ -555,6 +560,11 @@ header {
     border-radius: 10px;
 }
 
+.field.inline #colorSelector {
+    display: inline-block;
+    line-height: 40px;
+}
+
 #cSCheckbox {
     position: absolute;
     top: 0;
@@ -617,6 +627,7 @@ header {
 }
 
 #cSCheckbox:checked ~ #cSOptions                            { background-color: #FFFFFF; border-color: #e5e5e5; height: auto; }
+#cSCheckbox:checked ~ #cSOptions .cSOption                  { pointer-events: all; cursor: pointer; }
 #cSCheckbox:checked ~ #cSOptions .cSOption:not(:last-child) { border-bottom: thin #e5e5e5 solid; }
 #cSCheckbox:checked ~ #cSOptions .cSOption:hover            { background: #efefef; }
 #cSCheckbox:checked ~ #cSOptions .cSRadio                   { display: block; }
@@ -630,7 +641,9 @@ header {
     padding: 5px 0;
     z-index: 250;
     transition: background-color 250ms;
-    cursor: pointer;
+
+    pointer-events: none;
+    cursor: default;
 }
 
 .cSOption:first-child   { border-radius: 9px 9px 0 0; }
