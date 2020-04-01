@@ -16,7 +16,7 @@ function addAddEvent() {
     const addTodoList = document.querySelector("#addTodoList");
     let addTodoListHTML =
         '<form action="" method="POST" class="noUpperMargin">' +
-            '<div class="todoList grey">' +
+            '<div class="todoList pinkorange">' +
                 '<div class="tlHead field">' +
                     '<input type="text" id="tName" name="name" placeholder="Nouvelle Todo List" minlength="1" maxlength="32">' +
                 '</div>' +
@@ -72,7 +72,7 @@ function addList() {
     const todoListTitle = todoListInput.value || todoListInput.placeholder || "Nouvelle liste";
 
     // Call the php script
-    ajax.call("./php/addTodoList.php", "POST", [todoListTitle, "grey"])
+    ajax.call("./php/addTodoList.php", "POST", [todoListTitle, "pinkorange"])
         .then(reloadTodoLists, todoListErrors);
 
     // Prevent link from redirecting
