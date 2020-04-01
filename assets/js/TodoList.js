@@ -7,22 +7,22 @@ window.addEventListener("load", function () {
  * Add event on "Add list" button.
  *
  * @function    addAddEvent
- * @access      public
  * @return      {void}
  */
 function addAddEvent() {
 
     // Get "add Todo list" div and init two vars which contain HTML of the div
     const addTodoList = document.querySelector("#addTodoList");
-    let addTodoListHTML =
-        '<form action="" method="POST" class="noUpperMargin">' +
+    let divContent1 = '';
+    let divContent2 =
+        '<form action="#" method="POST" class="noUpperMargin">' +
             '<div class="todoList grey">' +
                 '<div class="tlHead field">' +
                     '<input type="text" id="tName" name="name" placeholder="Nouvelle Todo List" minlength="1" maxlength="32">' +
                 '</div>' +
                 '<div class="tlBody">' +
-                    '<ul class="taskContainer">' +
-                        '<a href="" id="addList" class="seeMore" onclick="return addList()"><li class="task"><input type="checkbox" id="addListCheck"><label for="addListCheck"><i class="fas fa-plus-square"></i> Ajouter la liste</label></li></a>' +
+                    '<ul>' +
+                    '<a href="" id="addList" class="seeMore" onclick="return addList()"><li><input type="checkbox" id="addListCheck"><label for="addListCheck"><i class="fas fa-plus-square"></i> Ajouter la liste</label></li></a>' +
                     '</ul>' +
                 '</div>' +
             '</div>' +
@@ -31,7 +31,9 @@ function addAddEvent() {
     addTodoList.addEventListener("click", function (e) {
 
         // Save content of div and replace it
-        addTodoList.outerHTML = addTodoListHTML;
+        divContent1 = addTodoList.outerHTML;
+        addTodoList.outerHTML = divContent2;
+
         addTodoList.classList.add("noHover");
     });
 }
@@ -40,7 +42,6 @@ function addAddEvent() {
  * Add event on "Delete list" button.
  *
  * @function    addDeleteEvent
- * @access      public
  * @return      {void}
  */
 function addDeleteEvent() {
@@ -64,7 +65,6 @@ function addDeleteEvent() {
  * Add a list.
  *
  * @function    addList
- * @access      public
  * @async
  * @return      {boolean}
  */
@@ -87,7 +87,6 @@ function addList() {
  * Reload Todo lists
  *
  * @function    reloadTodoLists
- * @access      public
  * @async
  * @return      {void}
  */
@@ -111,7 +110,6 @@ function reloadTodoLists() {
  * delete one.
  *
  * @function    todoListErrors
- * @access      public
  * @param       {string}        status      Error status
  * @return      {void}
  */
