@@ -39,6 +39,15 @@ function addAddEvent() {
  */
 function addDeleteEvent() {
 
+    document.querySelectorAll(".tDeleteContainer").forEach(function (el) {
+
+        el.addEventListener("click", function () {
+
+            const ajax = new AJAX();
+            ajax.call("./php/deleteTask.php", "POST", [this.dataset.taskId])
+                .then(reloadTasks, taskErrors);
+        });
+    });
 }
 
 /**

@@ -33,7 +33,13 @@ foreach ($list_tasks as $task) {
     $HTMLid = "l" . $list_id . "t" . $task_id;
     $class = $tasks_count + 1 == $list_tasks_count ? "task noBottomMargin" : "task";
 
-    $finished_task_html .= '<li class="'.$class.'"><input type="checkbox" id="'.$HTMLid.'" checked/><label for="'.$HTMLid.'">'.$task_name.'</label></li>';
+    $finished_task_html .= '<li class="'.$class.'">
+                                <div class="tDeleteContainer finished" data-task-id="'.$task_id.'">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <input type="checkbox" id="'.$HTMLid.'" checked/>
+                                <label for="'.$HTMLid.'">'.$task_name.'</label>
+                            </li>';
 
     $tasks_count++;
 }

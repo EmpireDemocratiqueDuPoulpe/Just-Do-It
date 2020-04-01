@@ -71,10 +71,11 @@ class Tasks {
      * @return      array|string    Array of tasks or an error.
      */
     public function get($user_id, $list_id, $type = "") {
-
+        // Prepare SQL and vars
         $sql = 'SELECT task_id, name, status FROM tasks WHERE user_id = :user_id && list_id = :list_id';
         $vars = ["user_id" => (int) $user_id, "list_id" => (int) $list_id];
 
+        // Add a check if only on type is wanted
         if ($type == "ongoing") {
             $sql .= ' && status = :status';
             $vars["status"] = 0;
@@ -82,6 +83,9 @@ class Tasks {
             $sql .= ' && status = :status';
             $vars["status"] = 1;
         }
+
+        // Add the ORDER BY
+        $sql .= " ORDER BY list_id";
 
         return PDOFactory::sendQuery($this->_db, $sql, $vars);
     }
@@ -118,5 +122,30 @@ class Tasks {
 
         // Return result
         return $lastIDBefore !== $lastIDAfter;
+    }
+
+    /**
+     * Delete a task.
+     *
+     * This function take the task id and delete
+     * it from the database.
+     *
+     * @function    delete
+     * @access      public
+     * @param       int             $task_id  Task id targeted for deletion
+     * @return      boolean
+     */
+    public function delete($task_id) {
+
+        // Delete task
+        PDOFactory::sendQuery(
+            $this->_db,
+            'DELETE FROM tasks WHERE task_id = :task_id',
+            ["task_id" => (int) $task_id],
+            false
+        );
+
+        // Return result
+        return (bool) PDOFactory::sendQuery($this->_db, 'SELECT task_id FROM tasks WHERE task_id = :task_id', ["task_id" => $task_id]);
     }
 }

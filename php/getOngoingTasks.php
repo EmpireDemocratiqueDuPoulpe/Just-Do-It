@@ -32,11 +32,20 @@ foreach ($list_tasks as $task) {
     $task_name = htmlspecialchars($task["name"]);
     $HTMLid = "l" . $list_id . "t" . $task_id;
 
-    $ongoing_task_html .= '<li class="task"><input type="checkbox" id="'.$HTMLid.'"/><label for="'.$HTMLid.'">'.$task_name.'</label></li>';
+    $ongoing_task_html .= '<li class="task">
+                                <div class="tDeleteContainer ongoing" data-task-id="'.$task_id.'">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <input type="checkbox" id="'.$HTMLid.'"/>
+                                <label for="'.$HTMLid.'">'.$task_name.'</label>
+                           </li>';
 
     $tasks_count++;
 }
 
-$ongoing_task_html .= '<li class="task addTask noBottomMargin"><input type="checkbox" id="addTask"><label for="addTask">Ajouter une t&acirc;che</label></li>';
+$ongoing_task_html .= '<li class="task addTask noBottomMargin">
+                            <input type="checkbox" id="addTask">
+                            <label for="addTask">Ajouter une t&acirc;che</label>
+                       </li>';
 
 if (!isset($is_included)) echo $ongoing_task_html;
