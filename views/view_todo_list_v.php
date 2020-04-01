@@ -5,7 +5,7 @@
         <title>ProjetPHP - <?= $list_name ?></title>
         <?php include_once(ROOT."/views/models/head.php"); ?>
     </head>
-    <body>
+    <body class="maxHeight">
         <!-- Header -->
         <?php include_once(ROOT."/views/models/header.php"); ?>
 
@@ -13,11 +13,16 @@
         <?= $errorsSuccessMsg ?>
 
         <!-- Todo list -->
-        <div id="todoListContainer">
+        <div id="todoListContainer" class="maxHeight">
+
+            <!-- Edit head -->
             <div id="todoListEditHead">
 
                 <!-- Form -->
                 <form action="" method="POST" class="noUpperMargin <?php if($errorsSuccessMsg) echo 'errorMsgAbove'?>">
+
+                    <!-- Todo list id -->
+                    <input type="hidden" id="tId" name="id" value="<?= $list_id ?>">
 
                     <!-- Todo list name -->
                     <div class="field">
@@ -27,7 +32,7 @@
 
                     <!-- Todo list color -->
                     <div class="field inline">
-                        <label for="tColor">Couleur :</label>
+                        <label for="cSCheckbox">Couleur :</label>
 
                         <!-- Color selector -->
                         <div id="colorSelector">
@@ -118,9 +123,46 @@
                             </div>
                         </div>
                     </div>
-                </form>
 
+                    <!-- Submit-->
+                    <input type="submit" value="ENREGISTRER">
+                </form>
+            </div>
+
+            <!-- Tasks Viewer -->
+            <div id="taskViewer">
+
+                <div id="tVOngoing">
+                    <div class="tVHead">
+                        <span>T&acirc;ches en cours</span>
+                    </div>
+
+                    <div class="tVBody">
+                        <ul class="taskContainer">
+                            <?= $ongoing_task_html ?>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="tVDelimiter"></div>
+
+                <div id="tVFinished">
+                    <div class="tVHead">
+                        <span>T&acirc;ches accomplies</span>
+                    </div>
+
+                    <div class="tVBody">
+                        <ul class="taskContainer">
+                            <?= $finished_task_html ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Scripts -->
+        <script src="./assets/js/bluebird.min.js"></script>
+        <script src="./assets/js/AJAX.js"></script>
+        <script src="./assets/js/Tasks.js"></script>
     </body>
 </html>
