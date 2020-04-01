@@ -39,7 +39,7 @@ foreach ($todoLists as $todoList) {
                 <h2><?= $list_name ?></h2>
             </div>
             <div class="tlBody">
-                <ul>
+                <ul class="taskContainer">
                     <?php
                         $tasks_limit = 4;
                         $tasks_count = 0;
@@ -56,15 +56,16 @@ foreach ($todoLists as $todoList) {
                             $task_name = htmlspecialchars($task["name"]);
                             $task_status = $task["status"] == "1" ? "checked" : "";
                             $HTMLid = "l" . $list_id . "t" . $task_id;
+                            $class = $tasks_count + 1 == $tasks_limit ? "task noBottomMargin" : "task";
 
-                            echo '<li><input type="checkbox" id="'.$HTMLid.'" '.$task_status.'/><label for="'.$HTMLid.'">'.$task_name.'</label></li>';
+                            echo '<li class="'.$class.'"><input type="checkbox" id="'.$HTMLid.'" '.$task_status.'/><label for="'.$HTMLid.'">'.$task_name.'</label></li>';
 
                             $tasks_count++;
                         }
 
                         // "See more" button
                         $see_more_id = "t".$list_id."SeeMore";
-                        echo '<a href="./view_todo_list.php?list_id='.$list_id.'" class="seeMore"><li><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
+                        echo '<a href="./view_todo_list.php?list_id='.$list_id.'" class="seeMore"><li class="task"><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
                     ?>
                 </ul>
             </div>
