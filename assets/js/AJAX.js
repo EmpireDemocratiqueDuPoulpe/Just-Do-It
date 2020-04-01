@@ -1,21 +1,3 @@
-/**
- * An array that contains one object per query.
- * @typedef     {Array}     QueriesList
- */
-
-/**
- * AJAX provide several methods to work with AJAX queries
- * simpler and with promises.
- *
- * Example:
- * const ajax = new AJAX();
- * ajax.call("./some/file/or/url", "POST", [name, id])
- *     .then(successCallback, errorCallback);
- *
- * @author  Alexis
- * @version 1.0
- * @access  public
- */
 class AJAX {
 
     // Attributes
@@ -42,9 +24,9 @@ class AJAX {
      *
      * @function    call
      * @access      public
-     * @param       {string}    url     Url to file or resource
-     * @param       {string}    type    (default = POST) Method type of the query (POST, GET, PUT, etc...)
-     * @param       {Array}     data    (optional) Data array sent
+     * @param       url     Url to file or resource
+     * @param       type    (default = POST) Method type of the query (POST, GET, PUT, etc...)
+     * @param       data    (optional) Data array sent
      * @returns     {Promise<XMLHttpRequest>}
      */
     call(url, type, data) {
@@ -78,44 +60,6 @@ class AJAX {
     }
 
     /**
-     * Send multiples queries with AJAX.
-     *
-     * This function will send multiples
-     * queries using a {QueriesList}. The
-     * promise returned start the callback
-     * when every promises contained are
-     * finished.
-     *
-     * Example:
-     * const ajax = new AJAX();
-     * ajax.multipleCalls([
-     *        {url: "/path/to/file/1", type: "POST", data: [1, 2, 3]},
-     *        {url: "/path/to/file/2", type: "GET"},
-     *        {url: "/path/to/file/3"}])
-     *    .then(successCallback, errorCallback);
-     *
-     * @function    multipleCalls
-     * @access      public
-     * @param       {QueriesList}   queries     List of queries.
-     * @return      {Promise<Array<Promise<XMLHttpRequest>>>}
-     */
-    multipleCalls(queries) {
-
-        const that = this;
-        let promises = [];
-
-        // Start every promises
-        queries.forEach(function (query) {
-            let type = query.type || "POST";
-            let data = query.data || [];
-
-            promises.push(that.call(query.url, type, data));
-        });
-
-        return Promise.all(promises);
-    }
-
-    /**
      * Add a running XMLHttpRequest to
      * the queue.
      *
@@ -127,7 +71,7 @@ class AJAX {
      *
      * @function    add
      * @access      public
-     * @param       {XMLHttpRequest}    xHttp       Running XMLHttpRequest object
+     * @param       xHttp       Running XMLHttpRequest object
      * @return      void
      */
     add(xHttp) {
@@ -145,7 +89,7 @@ class AJAX {
      *
      * @function    del
      * @access      public
-     * @param       {XMLHttpRequest}    xHttp       Ended XMLHttpRequest object
+     * @param       xHttp       Ended XMLHttpRequest object
      * @return      void
      */
     del(xHttp) {
