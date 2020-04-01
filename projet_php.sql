@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 25 mars 2020 à 14:34
+-- Généré le :  ven. 27 mars 2020 à 16:11
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `task_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `list_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(32) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`task_id`),
   KEY `list_id` (`list_id`),
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `todo_lists` (
   `color` varchar(255) NOT NULL,
   PRIMARY KEY (`list_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `todo_lists`
@@ -73,7 +73,9 @@ CREATE TABLE IF NOT EXISTS `todo_lists` (
 
 INSERT INTO `todo_lists` (`list_id`, `user_id`, `name`, `color`) VALUES
 (1, 1, 'Première ToDo list', 'pinkorange'),
-(2, 1, 'Deuxième liste (wow)', '');
+(12, 1, 'Ça marche ?', 'grey'),
+(13, 1, 'Et maintenant ?', 'grey'),
+(14, 1, 'Ah oui', 'grey');
 
 -- --------------------------------------------------------
 
