@@ -2,9 +2,20 @@
  * Global
  ***********************************/
 
+html {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     background: #F9F9F9;
+}
+
+body.maxHeight {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /*** Success and errors messages ***/
@@ -227,6 +238,12 @@ header {
     flex-wrap: wrap;
     height: 100%;
     padding: 0 15px;
+}
+
+#todoListContainer.maxHeight {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .todoList, #addTodoList {
@@ -460,28 +477,28 @@ header {
 }
 
 /* List */
-.tlBody ul {
+.taskContainer {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.tlBody li {
+.task {
     background-color: #F9F9F9;
     border-bottom: thin #e5e5e5 solid;
 
 }
 
-.tlBody li:hover {
+.task:hover {
     background-color: #efefef;
 }
 
 /* Checkboxes and labels */
-.tlBody ul input[type=checkbox] {
+.task input[type=checkbox] {
     display: none;
 }
 
-.tlBody ul label {
+.task label {
     display: block;
     width: 100%;
     height: 50px;
@@ -494,17 +511,21 @@ header {
     white-space: nowrap;
 }
 
-.tlBody ul li:nth-last-child(-n+2) {
-    border-bottom: none !important;
-}
+.task.noBottomMargin { border-bottom: none; }
 
-.tlBody ul input[type=checkbox]:checked + label {
+.task input[type=checkbox]:checked + label {
     color: #4CAF50;
 }
 
 /* Icon before labels */
-.tlBody ul label:before { font-family: 'Font Awesome\ 5 Free', sans-serif; content: "\f0c8\2003"; }
-.tlBody ul input[type=checkbox]:checked + label:before { content: "\f14a\2003"; }
+.task label:before { font-family: 'Font Awesome\ 5 Free', sans-serif; content: "\f0c8\2003"; }
+.task input[type=checkbox]:checked + label:before { content: "\f14a\2003"; }
+
+/* Add task button */
+.task.addTask                                               { color: #afafaf; }
+.task.addTask label:before                                  { content: "\f0fe\2003"; }
+.task.addTask input[type=checkbox]:checked + label          { color: #afafaf; }
+.task.addTask input[type=checkbox]:checked + label:before   { content: "\f0fe\2003"; }
 
 /* "See more" and "Add list" buttons */
 .seeMore {
@@ -551,18 +572,41 @@ header {
  ***********************************/
 
 /***** Edit head *****/
+#todoListEditHead {
+    width: 100%;
+    height: 200px;
+    padding-top: 10px;
+}
+
+#todoListEditHead form {
+    width: 100%;
+    height: 100%;
+}
+
+#todoListEditHead .field {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#todoListEditHead label {
+    margin-top: 0;
+}
+
+#todoListEditHead input[type=submit] {
+    float: right;
+    margin: 0;
+}
 
 /*** Color Select ***/
+#todoListEditHead .field.inline         { height: 40px; line-height: 40px; }
+#todoListEditHead .field label          { float: left; padding-right: 5px; }
+#todoListEditHead .field #colorSelector { display: inline-block; }
+
 #colorSelector {
     position: relative;
     width: 60px;
     height: 40px;
     border-radius: 10px;
-}
-
-.field.inline #colorSelector {
-    display: inline-block;
-    line-height: 40px;
 }
 
 #cSCheckbox {
@@ -581,6 +625,7 @@ header {
 
 /** Button **/
 /* Box with selected color */
+/* see: https://codepen.io/himalayasingh/pen/pxKKgd */
 #cSButton {
     position: relative;
     height: 40px;
@@ -704,3 +749,46 @@ header {
 #cSCheckbox:not(:checked) ~ #cSOptions .cSOption:nth-child(8) .opt  { top: -106px !important; }
 #cSCheckbox:not(:checked) ~ #cSOptions .cSOption:nth-child(9) .opt  { top: -116px !important; }
 #cSCheckbox:not(:checked) ~ #cSOptions .cSOption:nth-child(10) .opt { top: -126px !important; }
+/* end see */
+
+/***** Task Viewer *****/
+#taskViewer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+/** Ongoing, finished and delimiter **/
+#tVOngoing, #tVFinished {
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 50%;
+    height: 100%;
+    padding: 0 20px 0 10px;
+}
+
+#tVOngoing  { padding: 0 20px 0 10px; }
+#tVFinished { padding: 0 10px 0 20px; }
+
+#tVDelimiter {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 1px;
+    height: 95%;
+    background: #efefef;
+}
+
+/* Ongoing/finished header */
+.tVHead {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tVHead span {
+    color: #919191;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}

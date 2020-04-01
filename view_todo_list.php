@@ -27,16 +27,19 @@ else {
     $TodoListManager = new TodoLists($db);
     $TasksManager = new Tasks($db);
 
-    // Get Todo lists and tasks
+    // Get Todo list and tasks
     $todo_list = $TodoListManager->get($_SESSION["user_id"], $list_id)[0];
     $list_name = htmlspecialchars($todo_list["name"]);
     $list_color = htmlspecialchars($todo_list["color"]);
-    $list_tasks = [];
+    $ongoing_task_html = "";
+    $finished_task_html = "";
 
     if (!$todo_list) {
         $_GET["error"] = TODO_LIST_NOT_FOUND;
     } else {
-        $list_tasks = $TasksManager->getAll($_SESSION["user_id"]);
+        $is_included = true;
+        require_once "./php/getOngoingTasks.php";
+        require_once "./php/getFinishedTasks.php";
     }
 }
 
