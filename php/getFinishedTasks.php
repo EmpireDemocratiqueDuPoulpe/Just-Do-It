@@ -30,11 +30,12 @@ foreach ($list_tasks as $task) {
     // Get formatted task properties
     $task_id = $task["task_id"];
     $task_name = htmlspecialchars($task["name"]);
+    $task_status = $task["status"];
     $HTMLid = "l" . $list_id . "t" . $task_id;
     $class = $tasks_count + 1 == $list_tasks_count ? "task noBottomMargin" : "task";
 
-    $finished_task_html .= '<li class="'.$class.'">
-                                <div class="tDeleteContainer finished" data-task-id="'.$task_id.'">
+    $finished_task_html .= '<li class="'.$class.'" data-task-id="'.$task_id.'" data-task-status="'.$task_status.'">
+                                <div class="tDeleteContainer finished">
                                     <i class="fas fa-trash"></i>
                                 </div>
                                 <input type="checkbox" id="'.$HTMLid.'" checked/>

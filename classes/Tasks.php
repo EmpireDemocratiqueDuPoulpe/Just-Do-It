@@ -98,8 +98,8 @@ class Tasks {
      *
      * @function    add
      * @access      public
-     * @param       int             $user_id    User id who own this task
-     * @param       int             $list_id    List id
+     * @param       int|string      $user_id    User id who own this task
+     * @param       int|string      $list_id    List id
      * @param       string          $name       Task name
      * @param       string          $status     Status of the task
      * @return      boolean
@@ -125,6 +125,35 @@ class Tasks {
     }
 
     /**
+     * Update a task status.
+     *
+     * Change the status of a task with the new status
+     * (0: ongoing, 1: finished).
+     *
+     * @function    changeStatus
+     * @access      public
+     * @param       int|string      $task_id    Task id targeted
+     * @param       int|string      $newStatus  Task's new status (0/1)
+     * @return      boolean
+     */
+    public function changeStatus($task_id, $newStatus) {
+        // Change task status
+        PDOFactory::sendQuery(
+            $this->_db,
+            'UPDATE tasks SET status = :status WHERE task_id = :task_id',
+            ["status" => (int) $newStatus, "task_id" => (int) $task_id],
+            false
+        );
+
+        // Return result
+        return (bool) PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT task_id FROM tasks WHERE task_id = :task_id AND status = :status',
+            ["task_id" => $task_id, "status" => $newStatus]
+        );
+    }
+
+    /**
      * Delete a task.
      *
      * This function take the task id and delete
@@ -132,11 +161,10 @@ class Tasks {
      *
      * @function    delete
      * @access      public
-     * @param       int             $task_id  Task id targeted for deletion
+     * @param       int|string      $task_id  Task id targeted for deletion
      * @return      boolean
      */
     public function delete($task_id) {
-
         // Delete task
         PDOFactory::sendQuery(
             $this->_db,

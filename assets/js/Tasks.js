@@ -1,5 +1,6 @@
 window.addEventListener("load", function () {
     addAddEvent();
+    addUpdateEvent();
     addDeleteEvent();
 });
 
@@ -31,6 +32,28 @@ function addAddEvent() {
 }
 
 /**
+ * Add update event on a task.
+ *
+ * @function    addUpdateEvent
+ * @access      public
+ * @return      {void}
+ */
+function addUpdateEvent() {
+
+    document.querySelectorAll(".task:not(.addTask)").forEach(function (el) {
+
+        el.addEventListener("click", function () {
+            const task_id = this.dataset.taskId;
+            const task_status = this.dataset.taskStatus;
+
+            const ajax = new AJAX();
+            ajax.call("./php/updateTask.php", "POST", [task_id, task_status])
+                .then(reloadTasks, taskErrors);
+        });
+    });
+}
+
+/**
  * Add delete event on "Delete task" button.
  *
  * @function    addDeleteEvent
@@ -44,7 +67,7 @@ function addDeleteEvent() {
         el.addEventListener("click", function () {
 
             const ajax = new AJAX();
-            ajax.call("./php/deleteTask.php", "POST", [this.dataset.taskId])
+            ajax.call("./php/deleteTask.php", "POST", [this.parentNode.dataset.taskId])
                 .then(reloadTasks, taskErrors);
         });
     });
@@ -97,6 +120,7 @@ function reloadTasks() {
             document.querySelector("#tVOngoing .taskContainer").innerHTML = String(tasks[0]);
             document.querySelector("#tVFinished .taskContainer").innerHTML = String(tasks[1]);
             addAddEvent();
+            addUpdateEvent();
             addDeleteEvent();
         }, taskErrors);
 }
