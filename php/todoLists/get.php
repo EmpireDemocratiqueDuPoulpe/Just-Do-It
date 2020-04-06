@@ -4,7 +4,7 @@
 # Check if file was included
 ############################
 
-if (!isset($is_included)) require_once "../init.php";
+if (!isset($is_included)) require_once "../../init.php";
 
 ############################
 # Get TODOList

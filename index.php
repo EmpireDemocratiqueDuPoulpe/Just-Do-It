@@ -12,7 +12,7 @@ if (!$is_connected) redirectTo("./login.php");
 ############################
 
 $is_included = true;
-require_once "./php/getTodoList.php";
+require_once "./php/todoLists/get.php";
 
 ############################
 # Import the view

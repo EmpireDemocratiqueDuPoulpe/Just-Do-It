@@ -1,9 +1,14 @@
-window.addEventListener("load", initEvents);
+window.addEventListener("load", initTasksEvents);
 
 /**
  * Init every events
+ *
+ * @function    initTasksEvents
+ * @access      public
+ * @async
+ * @return      {void}
  */
-function initEvents() {
+function initTasksEvents() {
 
     const addTask = document.querySelector(".addTask");
     const tasks = document.querySelectorAll(".task:not(.addTask)");
@@ -17,7 +22,7 @@ function initEvents() {
                 '<form action="" method="POST" class="noUpperMargin">' +
                     '<li class="task addTask noBottomMargin noHover">' +
                         '<input type="text" id="taName" name="name" placeholder="Nouvelle t&acirc;che" minlength="1" maxlength="32">' +
-                        '<input type="submit" value="AJOUTER"  onclick="return add()">' +
+                        '<input type="submit" value="AJOUTER"  onclick="return addTask()">' +
                     '</li>' +
                 '</form>';
         });
@@ -28,7 +33,7 @@ function initEvents() {
         tasks.forEach(function (task) {
             task.addEventListener("click", function (event) {
                 event.stopPropagation();
-                update(this.dataset.taskId, this.dataset.taskStatus);
+                updateTask(this.dataset.taskId, this.dataset.taskStatus);
             });
         });
     }
@@ -47,12 +52,12 @@ function initEvents() {
 /**
  * Get tasks
  *
- * @function    get
+ * @function    getTasks
  * @access      public
  * @async
  * @return      {void}
  */
-function get() {
+function getTasks() {
     // Get list id
     const ajax = new AJAX();
     const listInput = document.querySelector("#tId");
@@ -65,19 +70,19 @@ function get() {
         .then(function (tasks) {
             document.querySelector("#tVOngoing .taskContainer").innerHTML = String(tasks[0]);
             document.querySelector("#tVFinished .taskContainer").innerHTML = String(tasks[1]);
-            initEvents();
+            initTasksEvents();
         }, ajax.error);
 }
 
 /**
  * Add a task.
  *
- * @function    add
+ * @function    addTask
  * @access      public
  * @async
  * @return      {boolean}
  */
-function add() {
+function addTask() {
     const ajax = new AJAX();
 
     // Get list id and task name
@@ -89,7 +94,7 @@ function add() {
 
     // Send the query
     ajax.call("./php/tasks/add.php", "POST", [listId, taskName, 0])
-        .then(get, ajax.error);
+        .then(getTasks, ajax.error);
 
     // Prevent link from redirecting
     return false;
@@ -98,21 +103,21 @@ function add() {
 /**
  * Update a task.
  *
- * @function    update
+ * @function    updateTask
  * @access      public
  * @async
  * @param       {string|Number}     taskId      Targeted task id
  * @param       {string|Number}     status      Task's new status
  * @return      {void}
  */
-function update(taskId, status) {
+function updateTask(taskId, status) {
     const ajax = new AJAX();
 
     ajax.call("./php/tasks/update.php", "POST", [taskId, status])
         .then(function () {
             const page = window.location.pathname.split("/").pop();
 
-            if (page && page !== "index.php") get();
+            if (page && page !== "index.php") getTasks();
         }, ajax.error);
 }
 
@@ -128,5 +133,5 @@ function update(taskId, status) {
 function del(taskId) {
     const ajax = new AJAX();
     ajax.call("./php/tasks/delete.php", "POST", [taskId])
-        .then(get, ajax.error);
+        .then(getTasks, ajax.error);
 }
