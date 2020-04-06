@@ -4,35 +4,44 @@ window.addEventListener("load", initEvents);
  * Init every events
  */
 function initEvents() {
-    ////// Add Event
+
     const addTask = document.querySelector(".addTask");
-    const addHTML =
-        '<form action="" method="POST" class="noUpperMargin">' +
-            '<li class="task addTask noBottomMargin noHover">' +
-                '<input type="text" id="taName" name="name" placeholder="Nouvelle t&acirc;che" minlength="1" maxlength="32">' +
-                '<input type="submit" value="AJOUTER"  onclick="return add()">' +
-            '</li>' +
-        '</form>';
+    const tasks = document.querySelectorAll(".task:not(.addTask)");
+    const delTaskBts = document.querySelectorAll(".tDeleteContainer");
 
-    addTask.addEventListener("click", function (e) {
-
-        addTask.outerHTML = addHTML;
-    });
+    ////// Add Event
+    if (addTask) {
+        addTask.addEventListener("click", function (event) {
+            event.stopPropagation();
+            addTask.outerHTML =
+                '<form action="" method="POST" class="noUpperMargin">' +
+                    '<li class="task addTask noBottomMargin noHover">' +
+                        '<input type="text" id="taName" name="name" placeholder="Nouvelle t&acirc;che" minlength="1" maxlength="32">' +
+                        '<input type="submit" value="AJOUTER"  onclick="return add()">' +
+                    '</li>' +
+                '</form>';
+        });
+    }
 
     ////// Update Event
-    document.querySelectorAll(".task:not(.addTask)").forEach(function (el) {
-        el.addEventListener("click", function () {
-            update(this.dataset.taskId, this.dataset.taskStatus);
+    if (tasks) {
+        tasks.forEach(function (task) {
+            task.addEventListener("click", function (event) {
+                event.stopPropagation();
+                update(this.dataset.taskId, this.dataset.taskStatus);
+            });
         });
-    });
+    }
 
     ////// Delete Event
-    document.querySelectorAll(".tDeleteContainer").forEach(function (el) {
-        el.addEventListener("click", function (event) {
-            event.stopPropagation();
-            del(this.parentNode.dataset.taskId);
+    if (delTaskBts) {
+        delTaskBts.forEach(function (delTaskBt) {
+            delTaskBt.addEventListener("click", function (event) {
+                event.stopPropagation();
+                del(this.parentNode.dataset.taskId);
+            });
         });
-    });
+    }
 }
 
 /**
