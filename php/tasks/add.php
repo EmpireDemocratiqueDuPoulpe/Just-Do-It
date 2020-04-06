@@ -1,5 +1,5 @@
 <?php
-require_once "../init.php";
+require_once "../../init.php";
 
 ############################
 # Get data
@@ -13,7 +13,7 @@ $name = $data[1] ?? null;
 $status = (int) $data[2] ?? null;
 
 ############################
-# Add todo list
+# Add task
 ############################
 
 $TaskManager = new Tasks($db);

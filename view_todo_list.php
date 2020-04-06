@@ -38,8 +38,8 @@ else {
         $_GET["error"] = TODO_LIST_NOT_FOUND;
     } else {
         $is_included = true;
-        require_once "./php/getOngoingTasks.php";
-        require_once "./php/getFinishedTasks.php";
+        require_once "./php/tasks/getOngoing.php";
+        require_once "./php/tasks/getFinished.php";
     }
 }
 

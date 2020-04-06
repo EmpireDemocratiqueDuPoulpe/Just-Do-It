@@ -17,7 +17,6 @@
  * @access  public
  */
 class AJAX {
-
     // Attributes
     queue;
 
@@ -128,7 +127,7 @@ class AJAX {
      * @function    add
      * @access      public
      * @param       {XMLHttpRequest}    xHttp       Running XMLHttpRequest object
-     * @return      void
+     * @return      {void}
      */
     add(xHttp) {
         this.queue.push(xHttp);
@@ -146,7 +145,7 @@ class AJAX {
      * @function    del
      * @access      public
      * @param       {XMLHttpRequest}    xHttp       Ended XMLHttpRequest object
-     * @return      void
+     * @return      {void}
      */
     del(xHttp) {
         const index = this.queue.indexOf(xHttp);
@@ -162,7 +161,7 @@ class AJAX {
      *
      * @function    abortAll
      * @access      public
-     * @return      void
+     * @return      {void}
      */
     abortAll() {
         // Abort all AJAX queries
@@ -172,5 +171,19 @@ class AJAX {
 
         // Clean the queue
         this.queue = [];
+    }
+
+    /**
+     * Show a query error. It's can
+     * be used by every ajax.call.then
+     * to handle errors easily.
+     *
+     * @function    error
+     * @access      public
+     * @param       {string}    status      Error's status
+     * @return      {void}
+     */
+    error(status) {
+        alert(status);
     }
 }

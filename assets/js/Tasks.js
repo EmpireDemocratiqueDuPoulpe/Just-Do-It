@@ -1,140 +1,118 @@
-window.addEventListener("load", function () {
-    addAddEvent();
-    addUpdateEvent();
-    addDeleteEvent();
-});
+window.addEventListener("load", initEvents);
 
 /**
- * Add event on "Add task" button.
- *
- * @function    addAddEvent
- * @access      public
- * @return      {void}
+ * Init every events
  */
-function addAddEvent() {
-
-    // Get "add task" div and init two vars which contain HTML of the div
+function initEvents() {
+    ////// Add Event
     const addTask = document.querySelector(".addTask");
-    let addTaskHTML =
+    const addHTML =
         '<form action="" method="POST" class="noUpperMargin">' +
-            '<li class="task addTask noBottomMargin">' +
+            '<li class="task addTask noBottomMargin noHover">' +
                 '<input type="text" id="taName" name="name" placeholder="Nouvelle t&acirc;che" minlength="1" maxlength="32">' +
-                '<input type="submit" value="AJOUTER"  onclick="return addTask()">' +
+                '<input type="submit" value="AJOUTER"  onclick="return add()">' +
             '</li>' +
         '</form>';
 
     addTask.addEventListener("click", function (e) {
 
-        // Save content of div and replace it
-        addTask.outerHTML = addTaskHTML;
-        addTask.classList.add("noHover");
+        addTask.outerHTML = addHTML;
     });
-}
 
-/**
- * Add update event on a task.
- *
- * @function    addUpdateEvent
- * @access      public
- * @return      {void}
- */
-function addUpdateEvent() {
-
+    ////// Update Event
     document.querySelectorAll(".task:not(.addTask)").forEach(function (el) {
-
         el.addEventListener("click", function () {
-            const task_id = this.dataset.taskId;
-            const task_status = this.dataset.taskStatus;
+            update(this.dataset.taskId, this.dataset.taskStatus);
+        });
+    });
 
-            const ajax = new AJAX();
-            ajax.call("./php/updateTask.php", "POST", [task_id, task_status])
-                .then(reloadTasks, taskErrors);
+    ////// Delete Event
+    document.querySelectorAll(".tDeleteContainer").forEach(function (el) {
+        el.addEventListener("click", function (event) {
+            event.stopPropagation();
+            del(this.parentNode.dataset.taskId);
         });
     });
 }
 
 /**
- * Add delete event on "Delete task" button.
+ * Get tasks
  *
- * @function    addDeleteEvent
+ * @function    get
  * @access      public
+ * @async
  * @return      {void}
  */
-function addDeleteEvent() {
+function get() {
+    // Get list id
+    const ajax = new AJAX();
+    const listInput = document.querySelector("#tId");
+    const listId = listInput.value;
 
-    document.querySelectorAll(".tDeleteContainer").forEach(function (el) {
-
-        el.addEventListener("click", function () {
-
-            const ajax = new AJAX();
-            ajax.call("./php/deleteTask.php", "POST", [this.parentNode.dataset.taskId])
-                .then(reloadTasks, taskErrors);
-        });
-    });
+    // Get tasks
+    ajax.multipleCalls([
+        {url: "./php/tasks/getOngoing.php", type: "POST", data: [listId]},
+        {url: "./php/tasks/getFinished.php", type: "POST", data: [listId]}])
+        .then(function (tasks) {
+            document.querySelector("#tVOngoing .taskContainer").innerHTML = String(tasks[0]);
+            document.querySelector("#tVFinished .taskContainer").innerHTML = String(tasks[1]);
+            initEvents();
+        }, ajax.error);
 }
 
 /**
  * Add a task.
  *
- * @function    addTask
+ * @function    add
  * @access      public
  * @async
  * @return      {boolean}
  */
-function addTask() {
-    // Create AJAX instance and get task name
+function add() {
     const ajax = new AJAX();
 
+    // Get list id and task name
     const listInput = document.querySelector("#tId");
     const listId = listInput.value;
 
     const taskInput = document.querySelector("#taName");
     const taskName = taskInput.value || taskInput.placeholder || "Nouvelle t&acirc;che";
 
-    // Call the php script
-    ajax.call("./php/addTask.php", "POST", [listId, taskName, 0])
-        .then(reloadTasks, taskErrors);
+    // Send the query
+    ajax.call("./php/tasks/add.php", "POST", [listId, taskName, 0])
+        .then(get, ajax.error);
 
     // Prevent link from redirecting
     return false;
 }
 
 /**
- * Reload tasks
+ * Update a task.
  *
- * @function    reloadTasks
+ * @function    update
  * @access      public
  * @async
+ * @param       {string|Number}     taskId      Targeted task id
+ * @param       {string|Number}     status      Task's new status
  * @return      {void}
  */
-function reloadTasks() {
-    // Get tasks
+function update(taskId, status) {
     const ajax = new AJAX();
-    const listInput = document.querySelector("#tId");
-    const listId = listInput.value;
-
-    ajax.multipleCalls([
-            {url: "./php/getOngoingTasks.php", type: "POST", data: [listId]},
-            {url: "./php/getFinishedTasks.php", type: "POST", data: [listId]}])
-        .then(function (tasks) {
-            document.querySelector("#tVOngoing .taskContainer").innerHTML = String(tasks[0]);
-            document.querySelector("#tVFinished .taskContainer").innerHTML = String(tasks[1]);
-            addAddEvent();
-            addUpdateEvent();
-            addDeleteEvent();
-        }, taskErrors);
+    ajax.call("./php/tasks/update.php", "POST", [taskId, status])
+        .then(get, ajax.error);
 }
 
 /**
- * Show an error if it's not possible
- * to add a task, to update them or to
- * delete one.
+ * Delete a task.
  *
- * @function    taskErrors
+ * @function    del
  * @access      public
- * @param       {string}        status      Error status
- * @return      {void}
+ * @async
+ * @param       {string|Number}     taskId      Targeted task id
+ * @return      {boolean}
  */
-function taskErrors(status) {
-    alert(status);
+function del(taskId) {
+    const ajax = new AJAX();
+    ajax.call("./php/tasks/delete.php", "POST", [taskId])
+        .then(get, ajax.error);
 }

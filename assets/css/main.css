@@ -492,10 +492,9 @@ header {
 .task {
     background-color: #F9F9F9;
     border-bottom: thin #e5e5e5 solid;
-
 }
 
-.task:hover {
+.task:not(.noHover):hover {
     background-color: #efefef;
 }
 
