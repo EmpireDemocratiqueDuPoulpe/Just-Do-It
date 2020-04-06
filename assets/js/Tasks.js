@@ -107,8 +107,13 @@ function add() {
  */
 function update(taskId, status) {
     const ajax = new AJAX();
+
     ajax.call("./php/tasks/update.php", "POST", [taskId, status])
-        .then(get, ajax.error);
+        .then(function () {
+            const page = window.location.pathname.split("/").pop();
+
+            if (page && page !== "index.php") get();
+        }, ajax.error);
 }
 
 /**

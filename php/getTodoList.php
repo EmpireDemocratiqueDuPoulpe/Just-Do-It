@@ -54,18 +54,29 @@ foreach ($todoLists as $todoList) {
                             $task = $tasksList[$task];
                             $task_id = $task["task_id"];
                             $task_name = htmlspecialchars($task["name"]);
-                            $task_status = $task["status"] == "1" ? "checked" : "";
+                            $task_status = $task["status"];
+                            $checkbox_status = $task["status"] == "1" ? "checked" : "";
                             $HTMLid = "l" . $list_id . "t" . $task_id;
                             $class = $tasks_count + 1 == $tasks_limit ? "task noBottomMargin" : "task";
 
-                            echo '<li class="'.$class.'"><input type="checkbox" id="'.$HTMLid.'" '.$task_status.'/><label for="'.$HTMLid.'">'.$task_name.'</label></li>';
+                            echo '<li class="'.$class.'" data-task-id="'.$task_id.'" data-task-status="'.$task_status.'">
+                                    <input type="checkbox" id="'.$HTMLid.'" '.$checkbox_status.'/>
+                                    <label for="'.$HTMLid.'">'.$task_name.'</label>
+                                 </li>';
 
                             $tasks_count++;
                         }
 
                         // "See more" button
                         $see_more_id = "t".$list_id."SeeMore";
-                        echo '<a href="./view_todo_list.php?list_id='.$list_id.'" class="seeMore"><li class="task"><input type="checkbox" id="'.$see_more_id.'"/><label for="'.$see_more_id.'"><i class="fas fa-search"></i> Voir plus</label></li></a>';
+                        echo '<a href="./view_todo_list.php?list_id='.$list_id.'" class="seeMore">
+                                <li class="task"><input type="checkbox" id="'.$see_more_id.'"/>
+                                    <label for="'.$see_more_id.'">
+                                        <i class="fas fa-search"></i>
+                                        Voir plus
+                                    </label>
+                                </li>
+                             </a>';
                     ?>
                 </ul>
             </div>
