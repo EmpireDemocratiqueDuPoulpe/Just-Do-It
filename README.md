@@ -50,8 +50,8 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 | Inscription, connexion et déconnexion | 3 pts | 3 pt |
 | Création/suppression d'une "TODO list" | 2 pt | 2 pt |
 | Affichage des "TODO lists" | 1 pt | 1 pt |
-| Changer le statut d'une tâche | 1 pt | 0.5 pt |
-| Boutons "cocher / décocher tout" | 1 pt | 0.5 pt |
+| Changer le statut d'une tâche | 1 pt | 1 pt |
+| Boutons "cocher / décocher tout" | 1 pt | 1 pt |
 | Trouver un utilisateur avec son nom/e-mail | 1 pt | 0 pt |
 | Envoi d'un mail d'invitation | 1 pt | 0 pt |
 | Affichage de la notification | 1 pt | 0 pt |
@@ -59,7 +59,7 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 | Supprimer un ami | 1 pt | 0 pt
 | Création des tests d'unités | 3 pts | 0 pt |
 | Design d'un thème clair et sombre | 3 pts | 0 pt |
-| Total | 20 pts | 7 pt |
+| Total | 20 pts | 8 pt |
 
 ## Présentation au correcteur
 
