@@ -10,6 +10,7 @@ window.addEventListener("load", initFriendsEvents);
  */
 function initFriendsEvents() {
     const addFriend = document.querySelector(".addFriend");
+    const delFriendBts = document.querySelectorAll(".fDeleteContainer");
 
     ////// Add Event
     if (addFriend) {
@@ -22,6 +23,16 @@ function initFriendsEvents() {
                         '<input type="submit" value="AJOUTER"  onclick="return addFriend()">' +
                     '</form>' +
                 '</li>';
+        });
+    }
+
+    ////// Delete Event
+    if (delFriendBts) {
+        delFriendBts.forEach(function (delFriendBt) {
+            delFriendBt.addEventListener("click", function (event) {
+                event.stopPropagation();
+                delFriend(this.dataset.friendId);
+            });
         });
     }
 }
@@ -66,4 +77,18 @@ function addFriend() {
 
     // Prevent link from redirecting
     return false;
+}
+
+/**
+ * Delete a friend.
+ *
+ * @function    delFriend
+ * @access      public
+ * @async
+ * @return      {boolean}
+ */
+function delFriend(friendId) {
+    const ajax = new AJAX();
+    ajax.call("./php/friends/delete.php", "POST", [friendId])
+        .then(getFriends, ajax.error);
 }

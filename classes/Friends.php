@@ -67,6 +67,8 @@ class Friends {
         }
         $friends_id = rtrim($friends_id,", ");
 
+        if (!$friends_id) { return []; }
+
         // Return the friends list
         return PDOFactory::sendQuery(
             $this->_db,
@@ -161,5 +163,34 @@ class Friends {
 
         // Return result
         return $this->addById($user_id, $friend_id);
+    }
+
+    /**
+     * Delete a friend.
+     *
+     * This function take the friend id and the
+     * user id and delete the friendship from
+     * the database.
+     *
+     * @function    delete
+     * @access      public
+     * @param       int|string      $user_id    User id
+     * @param       int|string      $friend_id  Id of the targeted friend
+     * @return      boolean
+     */
+    public function delete($user_id, $friend_id) {
+        // Delete friend
+        PDOFactory::sendQuery(
+            $this->_db,
+            'DELETE FROM friendships WHERE (user_a_id = :user_a_id1 AND user_b_id = :user_b_id1) OR (user_a_id = :user_a_id2 AND user_b_id = :user_b_id2)',
+            ["user_a_id1" => (int) $user_id, "user_b_id1" => (int) $friend_id, "user_a_id2" => (int) $friend_id, "user_b_id2" => (int) $user_id],
+            false
+        );
+
+        // Return result
+        return (bool) PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT friendship_id FROM friendships WHERE (user_a_id = :user_a_id1 AND user_b_id = :user_b_id1) OR (user_a_id = :user_a_id2 AND user_b_id = :user_b_id2)',
+            ["user_a_id1" => (int) $user_id, "user_b_id1" => (int) $friend_id, "user_a_id2" => (int) $friend_id, "user_b_id2" => (int) $user_id]);
     }
 }

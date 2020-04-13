@@ -21,7 +21,7 @@ foreach ($friends as $friend) {
     $friend_id = htmlspecialchars($friend["user_id"]);
     $friend_name = htmlspecialchars($friend["username"]);
 
-    echo '<li class="friend" data-friend-id="'.$friend_id.'">'.$friend_name.'</li>';
+    echo '<li class="friend" data-friend-id="'.$friend_id.'">'.$friend_name.'<div class="fDeleteContainer" data-friend-id="'.$friend_id.'"><i class="fas fa-user-minus"></i></div></li>';
 }
 
 echo '<li class="friend addFriend noBottomMargin"><i class="fas fa-user-plus"></i> Ajouter un ami</li>';
