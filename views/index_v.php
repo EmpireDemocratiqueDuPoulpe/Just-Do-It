@@ -24,10 +24,7 @@
 
                     <div id="friendListBody">
                         <ul>
-                            <li class="friend">Frangipanus</li>
-                            <li class="friend">Louan</li>
-                            <li class="friend">Empire Démocratique du poulpe</li>
-                            <li class="friend noBottomMargin">Maxou le noob</li>
+                            <?= $friendsHTML ?>
                         </ul>
                     </div>
                 </div>
