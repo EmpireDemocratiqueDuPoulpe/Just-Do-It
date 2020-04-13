@@ -5,9 +5,9 @@
         <title>ProjetPHP - <?= $list_name ?></title>
         <?php include_once(ROOT."/views/models/head.php"); ?>
     </head>
-    <body class="maxHeight">
+    <body>
         <!-- Header -->
-        <?php $classes = "noShadow"; include_once(ROOT."/views/models/header.php"); ?>
+        <?php $classes = "noShadow noFixed"; include_once(ROOT."/views/models/header.php"); ?>
 
         <!-- Errors and success messages -->
         <?= $errorsSuccessMsg ?>

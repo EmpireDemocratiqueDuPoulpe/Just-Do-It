@@ -29,7 +29,7 @@ function initListsEvents() {
                                     '<li class="task">' +
                                         '<input type="checkbox" id="addCheck">' +
                                         '<label for="addCheck">' +
-                                            '<i class="fas fa-plus-square"></i>' +
+                                            '<i class="fas fa-plus-square"></i> ' +
                                             'Ajouter la liste' +
                                         '</label>' +
                                     '</li>' +

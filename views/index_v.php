@@ -14,6 +14,26 @@
             <?= $todoListsHTML; ?>
         </div>
 
+        <!-- Friends list -->
+        <div id="friendList">
+            <div id="friendListGradientBg">
+                <div  id="friendListGradientBorder">
+                    <div id="friendListHead">
+                        <h3>Amis</h3>
+                    </div>
+
+                    <div id="friendListBody">
+                        <ul>
+                            <li class="friend">Frangipanus</li>
+                            <li class="friend">Louan</li>
+                            <li class="friend">Empire Démocratique du poulpe</li>
+                            <li class="friend noBottomMargin">Maxou le noob</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Scripts -->
         <script src="./assets/js/bluebird.min.js"></script>
         <script src="./assets/js/AJAX.js"></script>
