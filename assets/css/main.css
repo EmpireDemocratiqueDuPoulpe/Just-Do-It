@@ -674,6 +674,7 @@ header {
     background: transparent;
     border: thin transparent solid;
     border-radius: 10px;
+    z-index: 200;
 }
 
 #cSCheckbox:checked ~ #cSOptions                            { background-color: #FFFFFF; border-color: #e5e5e5; height: auto; }
