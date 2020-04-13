@@ -36,5 +36,6 @@
         <script src="./assets/js/AJAX.js"></script>
         <script src="./assets/js/TodoList.js"></script>
         <script src="./assets/js/Tasks.js"></script>
+        <script src="./assets/js/Friends.js"></script>
     </body>
 </html>

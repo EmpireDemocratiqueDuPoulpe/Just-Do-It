@@ -74,4 +74,92 @@ class Friends {
             $friends_id_params
         );
     }
+
+    /**
+     * Add a friend.
+     *
+     * This function take the user id and the new friend's
+     * id and create a new friendship.
+     *
+     * @function    addById
+     * @access      public
+     * @param       int|string      $user_id            User id
+     * @param       string          $new_friend_id      ID of the new friend
+     * @return      boolean
+     */
+    public function addById($user_id, $new_friend_id) {
+
+        // Get last ID before query
+        $lastIDBefore = PDOFactory::sendQuery($this->_db, 'SELECT friendship_id FROM friendships ORDER BY friendship_id DESC LIMIT 1')[0]["friendship_id"];
+
+        // Create the friendships
+        PDOFactory::sendQuery(
+            $this->_db,
+            'INSERT INTO friendships(user_a_id, user_b_id) VALUES (:user_a_id, :user_b_id)',
+            ["user_a_id" => (int) $user_id, "user_b_id" => (int) $new_friend_id],
+            false
+        );
+
+        // Get last ID after query
+        $lastIDAfter = PDOFactory::sendQuery($this->_db, 'SELECT friendship_id FROM friendships ORDER BY friendship_id DESC LIMIT 1')[0]["friendship_id"];
+
+        // Return result
+        return $lastIDBefore !== $lastIDAfter;
+    }
+
+    /**
+     * Add a friend.
+     *
+     * This function take the user id and the new friend's
+     * name and create a new friendship.
+     *
+     * @function    addByUsername
+     * @access      public
+     * @param       int|string      $user_id            User id
+     * @param       string          $new_friend_name    Username of the new friend
+     * @return      boolean
+     */
+    public function addByUsername($user_id, $new_friend_name) {
+
+        // Check if friend exist
+        $friend_id = PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT user_id from users WHERE username = :username AND NOT user_id = :user_id',
+            ["username" => $new_friend_name, "user_id" => $user_id]
+        );
+
+        if (!$friend_id) return false;
+        $friend_id = $friend_id[0]["user_id"];
+
+        // Return result
+        return $this->addById($user_id, $friend_id);
+    }
+
+    /**
+     * Add a friend.
+     *
+     * This function take the user id and the new friend's
+     * e-mail and create a new friendship.
+     *
+     * @function    addByEmail
+     * @access      public
+     * @param       int|string      $user_id            User id
+     * @param       string          $new_friend_email   Email of the new friend
+     * @return      boolean
+     */
+    public function addByEmail($user_id, $new_friend_email) {
+
+        // Check if friend exist
+        $friend_id = PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT user_id from users WHERE email = :email AND NOT user_id = :user_id',
+            ["email" => $new_friend_email, "user_id" => $user_id]
+        );
+
+        if (!$friend_id) return false;
+        $friend_id = $friend_id[0]["user_id"];
+
+        // Return result
+        return $this->addById($user_id, $friend_id);
+    }
 }
