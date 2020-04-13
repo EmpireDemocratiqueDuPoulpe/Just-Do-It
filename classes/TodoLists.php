@@ -125,7 +125,8 @@ class TodoLists {
         // Delete todo list
         PDOFactory::sendQuery(
             $this->_db,
-            'DELETE FROM todo_lists WHERE list_id = :list_id',
+            'DELETE FROM todo_lists WHERE list_id = :list_id;
+                 DELETE FROM tasks WHERE list_id = :list_id;',
             ["list_id" => (int) $list_id],
             false
         );
