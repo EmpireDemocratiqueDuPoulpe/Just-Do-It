@@ -33,12 +33,12 @@
 
                 <!-- Passwords -->
                 <div class="field double">
-                    <div>
+                    <div class="f">
                         <label for="rPassword1">Mot de passe</label>
                         <input type="password" id="rPassword1" name="password1" placeholder=" " minlength="8" maxlength="255" onkeydown="this.setCustomValidity(''); document.getElementById('rPassword2').setCustomValidity('');" required/>
                     </div>
 
-                    <div>
+                    <div class="f">
                         <label for="rPassword2">Mot de passe (r&eacute;p&eacute;ter)</label>
                         <input type="password" id="rPassword2" name="password2" placeholder=" " minlength="8" maxlength="255" onkeydown="this.setCustomValidity(''); document.getElementById('rPassword1').setCustomValidity('');" required/>
                     </div>

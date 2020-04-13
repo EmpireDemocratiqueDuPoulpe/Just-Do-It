@@ -18,6 +18,77 @@ body.maxHeight {
     flex-direction: column;
 }
 
+/*** Header ***/
+header {
+    height: 95px;
+    /* background: #A94CE6; */
+    background: #DA22FF;
+    background: -webkit-linear-gradient(to right, #9733EE, #DA22FF);
+    background: linear-gradient(to right, #9733EE, #DA22FF);
+    color: #FFFFFF;
+    -webkit-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    z-index: 150;
+}
+
+header.noShadow {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+/* Logo */
+#logo {
+    display: inline-block;
+    float: left;
+    width: 61px;
+    height: 61px;
+    margin: 17px 0 17px 115px;
+    /**********/
+    border-radius: 50%;
+    background: #8d33e4;
+    /**********/
+}
+
+/* User */
+#user {
+    display: inline-block;
+    float: right;
+    width: 275px;
+    height: 61px;
+    margin: 17px 115px 17px 0;
+}
+
+#user p {
+    display: inline-block;
+    width: 65%;
+    height: 61px;
+    line-height: 61px;
+    margin: 0;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#disconnect {
+    display: inline-block;
+    float: right;
+    text-align: center;
+    width: 61px;
+    height: 61px;
+    line-height: 61px;
+    font-size: 2.5em;
+    background: #c622eb;
+    color: #9e22c3;
+    transition: color 250ms;
+}
+
+#disconnect:hover {
+    color: #8a22af;
+}
+
 /*** Success and errors messages ***/
 .errorBox, .successBox {
     box-sizing: border-box;
@@ -67,7 +138,7 @@ form.noUpperMargin  { margin-top: 0; }
     justify-content: space-between;
 }
 
-.field.double div { width: 190px; }
+.field.double .f { width: 190px; }
 
 .field.inline label,
 .field.inline input:not(.cSRadio) {
@@ -93,6 +164,8 @@ form.noUpperMargin  { margin-top: 0; }
     border: none;
     border-bottom: 2px #707070 solid;
 }
+
+.field .noBackground { background: none; }
 
 .field input:required           { box-shadow:none; }
 .field input:invalid            { border-color: #ff4444; }
@@ -166,70 +239,6 @@ input[type=submit]:active { background-color: #884ac3; padding: 0; transition-du
  * Index
  ***********************************/
 
-/*** Header ***/
-header {
-    height: 95px;
-    /* background: #A94CE6; */
-    background: #DA22FF;
-    background: -webkit-linear-gradient(to right, #9733EE, #DA22FF);
-    background: linear-gradient(to right, #9733EE, #DA22FF);
-    color: #FFFFFF;
-    -webkit-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
-    box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
-}
-
-/* Logo */
-#logo {
-    display: inline-block;
-    float: left;
-    width: 61px;
-    height: 61px;
-    margin: 17px 0 17px 115px;
-    /**********/
-    border-radius: 50%;
-    background: #8d33e4;
-    /**********/
-}
-
-/* User */
-#user {
-    display: inline-block;
-    float: right;
-    width: 275px;
-    height: 61px;
-    margin: 17px 115px 17px 0;
-}
-
-#user p {
-    display: inline-block;
-    width: 65%;
-    height: 61px;
-    line-height: 61px;
-    margin: 0;
-    font-size: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-#disconnect {
-    display: inline-block;
-    float: right;
-    text-align: center;
-    width: 61px;
-    height: 61px;
-    line-height: 61px;
-    font-size: 2.5em;
-    background: #c622eb;
-    color: #9e22c3;
-    transition: color 250ms;
-}
-
-#disconnect:hover {
-    color: #8a22af;
-}
-
 /*** Todo list ***/
 #todoListContainer {
     box-sizing: border-box;
@@ -244,6 +253,10 @@ header {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+#todoListContainer.noPadding {
+    padding: 0;
 }
 
 .todoList, #addTodoList {
@@ -580,12 +593,31 @@ header {
 #todoListEditHead {
     width: 100%;
     height: 200px;
-    padding-top: 10px;
+    margin-bottom: 30px;
+    padding: 10px 15px 0 15px;
+    background: #DA22FF;
+    background: -webkit-linear-gradient(to right, #9733EE, #DA22FF);
+    background: linear-gradient(to right, #9733EE, #DA22FF);
+    color: #FFFFFF;
+    -webkit-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.2);
+    z-index: 149;
+}
+
+#todoListEditHead a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#todoListEditHead a:hover {
+    text-decoration: underline;
 }
 
 #todoListEditHead form {
     width: 100%;
     height: 100%;
+    margin-top: 10px;
 }
 
 #todoListEditHead .field {
@@ -593,12 +625,20 @@ header {
     margin-right: 0;
 }
 
+#todoListEditHead .field input {
+    background: #8d33e4;
+    color: #FFFFFF;
+    border-color: #8d33e4;
+}
+
+#todoListEditHead .field input:placeholder-shown    { border-color: #e4006f; }
+#todoListEditHead .field input:focus                { border-color: #FFFFFF; }
+
 #todoListEditHead label {
     margin-top: 0;
 }
 
 #todoListEditHead input[type=submit] {
-    float: right;
     margin: 0;
 }
 
@@ -608,9 +648,12 @@ header {
 #todoListEditHead .field #colorSelector { display: inline-block; }
 
 #colorSelector {
+    flex-shrink: 0;
+    flex-grow: 0;
     position: relative;
     width: 60px;
     height: 40px;
+    margin: 5px 0 5px 10px;
     border-radius: 10px;
 }
 
@@ -764,7 +807,7 @@ header {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    padding-bottom: 10px;
+    padding: 0 15px 10px 15px;
 }
 
 /** Ongoing, finished and delimiter **/

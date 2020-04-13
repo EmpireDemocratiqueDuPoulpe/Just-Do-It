@@ -7,16 +7,18 @@
     </head>
     <body class="maxHeight">
         <!-- Header -->
-        <?php include_once(ROOT."/views/models/header.php"); ?>
+        <?php $classes = "noShadow"; include_once(ROOT."/views/models/header.php"); ?>
 
         <!-- Errors and success messages -->
         <?= $errorsSuccessMsg ?>
 
         <!-- Todo list -->
-        <div id="todoListContainer" class="maxHeight">
+        <div id="todoListContainer" class="maxHeight noPadding">
 
             <!-- Edit head -->
             <div id="todoListEditHead">
+
+                <a href="./index.php"><i class="fas fa-long-arrow-alt-left"></i> Retour aux todo lists</a>
 
                 <!-- Form -->
                 <form action="./php/todoLists/update.php" method="POST" class="noUpperMargin <?php if($errorsSuccessMsg) echo 'errorMsgAbove'?>">
@@ -24,15 +26,10 @@
                     <!-- Todo list id -->
                     <input type="hidden" id="tId" name="id" value="<?= $list_id ?>">
 
-                    <!-- Todo list name -->
-                    <div class="field">
-                        <label for="tName"></label>
-                        <input type="text" id="tName" name="name" placeholder=" " value="<?= $list_name ?>" minlength="1" maxlength="32" onkeydown="this.setCustomValidity('');" required/>
-                    </div>
-
                     <!-- Todo list color -->
-                    <div class="field inline">
-                        <label for="cSCheckbox">Couleur :</label>
+                    <div class="field double">
+                        <label for="tName"></label>
+                        <input type="text" id="tName" class="noBackground" name="name" placeholder=" " value="<?= $list_name ?>" minlength="1" maxlength="32" onkeydown="this.setCustomValidity('');" required/>
 
                         <!-- Color selector -->
                         <div id="colorSelector">

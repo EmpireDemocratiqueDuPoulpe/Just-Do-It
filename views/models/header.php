@@ -1,4 +1,6 @@
-<header>
+<?php if (!isset($classes)) $classes = ""; ?>
+
+<header class="<?= $classes ?>">
     <div id="logo"></div>
 
     <div id="user">
