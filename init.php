@@ -51,6 +51,8 @@ define("REGISTRATION_COMPLETE", 100);
  * TODO_LIST_NOT_FOUND :    Invalid/empty username
  */
 define("TODO_LIST_NOT_FOUND", 200);
+define("LIST_NAME_NOT_VALID", 201);
+define("CANNOT_UPDATE_LIST", 210);
 
 ############################
 # Session
@@ -133,6 +135,8 @@ function getErrorsSuccess() {
         CANNOT_DISCONNECT => "Erreur inconnue, impossible de finaliser la d&eacute;connexion. Veuillez r&eacute;essayer plus tard ou contactez le <a href=\"#\">support</a>.",
         REGISTRATION_COMPLETE => "Inscription r&eacute;ussie ! Vous pouvez d&eacute;sormais vous connecter.",
         TODO_LIST_NOT_FOUND => "La todo list n'existe pas.<br><a href=\"./index.php\"><i class=\"fas fa-long-arrow-alt-left\"></i> Retour aux todo lists</a>",
+        LIST_NAME_NOT_VALID => "Le nom de la liste est trop long (maximum 32 caract&egrave;res)",
+        CANNOT_UPDATE_LIST => "Impossible de modifier la todo list. Veuillez r&eacute;essayer plus tard ou contactez le <a href=\"#\">support</a>.",
         "none" => "<em>Un probl&egrave;me est survenu lors de l'affichage de ce message</em>"
     ];
 

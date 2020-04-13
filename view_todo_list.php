@@ -13,9 +13,14 @@ if (!$is_connected) redirectTo("./login.php");
 ############################
 
 $list_id = isset($_GET["list_id"]) && !empty($_GET["list_id"]) ? $_GET["list_id"] : null;
+$list_name = "";
+$list_color = "";
+$ongoing_task_html = "";
+$finished_task_html = "";
 
 if (!$list_id) {
-    $_GET["error"] = TODO_LIST_NOT_FOUND;
+    if (!isset($_GET["error"]) OR empty($_GET["error"]))
+        $_GET["error"] = TODO_LIST_NOT_FOUND;
 }
 
 ############################
@@ -31,8 +36,6 @@ else {
     $todo_list = $TodoListManager->get($_SESSION["user_id"], $list_id)[0];
     $list_name = htmlspecialchars($todo_list["name"]);
     $list_color = htmlspecialchars($todo_list["color"]);
-    $ongoing_task_html = "";
-    $finished_task_html = "";
 
     if (!$todo_list) {
         $_GET["error"] = TODO_LIST_NOT_FOUND;

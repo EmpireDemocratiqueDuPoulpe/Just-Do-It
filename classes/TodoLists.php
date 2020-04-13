@@ -110,6 +110,35 @@ class TodoLists {
     }
 
     /**
+     * Update a list.
+     *
+     * Change the name and the color of a list.
+     *
+     * @function    update
+     * @access      public
+     * @param       int|string      $list_id    Targeted list id
+     * @param       string          $name       New list name
+     * @param       string          $color      New list color
+     * @return      boolean
+     */
+    public function update($list_id, $name, $color) {
+        // Update list
+        PDOFactory::sendQuery(
+            $this->_db,
+            'UPDATE todo_lists SET name = :name, color = :color WHERE list_id = :list_id',
+            ["name" => $name, "color" => $color, "list_id" => (int) $list_id],
+            false
+        );
+
+        // Return result
+        return (bool) PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT list_id FROM todo_lists WHERE list_id = :list_id AND name = :name',
+            ["list_id" => $list_id, "name" => $name]
+        );
+    }
+
+    /**
      * Delete a todo list.
      *
      * This function take the todo list id and delete
