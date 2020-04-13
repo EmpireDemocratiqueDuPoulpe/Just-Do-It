@@ -52,7 +52,7 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 | Affichage des "TODO lists" | 1 pt | 1 pt |
 | Changer le statut d'une tâche | 1 pt | 1 pt |
 | Boutons "cocher / décocher tout" | 1 pt | 1 pt |
-| Trouver un utilisateur avec son nom/e-mail | 1 pt | 0 pt |
+| Trouver un utilisateur avec son nom/e-mail | 1 pt | 1 pt |
 | Envoi d'un mail d'invitation | 1 pt | 0 pt |
 | Affichage de la notification | 1 pt | 0 pt |
 | Affichage des listes partagés et modification des droits | 2 pts | 0 pt |
