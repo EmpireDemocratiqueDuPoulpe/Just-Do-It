@@ -13,6 +13,8 @@ function initTasksEvents() {
     const addTask = document.querySelector(".addTask");
     const tasks = document.querySelectorAll(".task:not(.addTask)");
     const delTaskBts = document.querySelectorAll(".tDeleteContainer");
+    const checkEveryTasksBt = document.querySelector("#checkAllTasks");
+    const uncheckEveryTasksBt = document.querySelector("#uncheckAllTasks");
 
     ////// Add Event
     if (addTask) {
@@ -45,6 +47,20 @@ function initTasksEvents() {
                 event.stopPropagation();
                 del(this.parentNode.dataset.taskId);
             });
+        });
+    }
+
+    ////// Check every tasks Event
+    if (checkEveryTasksBt) {
+        checkEveryTasksBt.addEventListener("click", function (event) {
+            checkEveryTasks();
+        });
+    }
+
+    ////// Uncheck every tasks Event
+    if (uncheckEveryTasksBt) {
+        uncheckEveryTasksBt.addEventListener("click", function (event) {
+            uncheckEveryTasks();
         });
     }
 }
@@ -134,4 +150,38 @@ function del(taskId) {
     const ajax = new AJAX();
     ajax.call("./php/tasks/delete.php", "POST", [taskId])
         .then(getTasks, ajax.error);
+}
+
+/**
+ * Check every tasks in "On going".
+ *
+ * @function    checkEveryTasks
+ * @access      public
+ * @return      {void}
+ */
+function checkEveryTasks() {
+    const tasks = document.querySelectorAll("#tVOngoing .task:not(.addTask)");
+
+    if (tasks) {
+        tasks.forEach(function (task) {
+            task.click();
+        });
+    }
+}
+
+/**
+ * Uncheck every tasks in "Finished".
+ *
+ * @function    uncheckEveryTasks
+ * @access      public
+ * @return      {void}
+ */
+function uncheckEveryTasks() {
+    const tasks = document.querySelectorAll("#tVFinished .task:not(.addTask)");
+
+    if (tasks) {
+        tasks.forEach(function (task) {
+            task.click();
+        });
+    }
 }
