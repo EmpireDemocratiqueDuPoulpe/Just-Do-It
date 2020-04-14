@@ -58,8 +58,8 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 | Affichage des listes partagés et modification des droits | 2 pts | 0 pt |
 | Supprimer un ami | 1 pt | 1 pt
 | Création des tests d'unités | 3 pts | 0 pt |
-| Design d'un thème clair et sombre | 3 pts | 0 pt |
-| Total | 20 pts | 9 pt |
+| Design d'un thème clair et sombre | 3 pts | 3 pt |
+| Total | 20 pts | 12 pt |
 
 ## Présentation au correcteur
 
@@ -70,9 +70,14 @@ Vous aurez un passage de 10 à 15 minutes de présentation du projet. Vous pouve
  - ProjetPHP
 	 - assets
 		 - css
-		 - js
+		 - fonts
 		 - images
+		 - js
 	 - classes
 	 - config
 	 - php
+	 	- friends
+		- tasks
+		- todoLists
 	 - views
+	 	- models
