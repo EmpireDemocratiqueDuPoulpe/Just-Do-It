@@ -54,6 +54,6 @@
         <div id="registerRightImg"></div>
 
         <!-- Scripts -->
-        <script src="./assets/js/FormChecker.js"></script>
+        <script defer src="./assets/js/ThemeSwitcher.js"></script>
     </body>
 </html>

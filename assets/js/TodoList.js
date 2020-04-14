@@ -1,4 +1,4 @@
-window.addEventListener("load", initListsEvents);
+initListsEvents();
 
 /**
  * Init every events

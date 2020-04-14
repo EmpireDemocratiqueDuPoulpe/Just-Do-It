@@ -32,10 +32,11 @@
         </div>
 
         <!-- Scripts -->
-        <script src="./assets/js/bluebird.min.js"></script>
-        <script src="./assets/js/AJAX.js"></script>
-        <script src="./assets/js/TodoList.js"></script>
-        <script src="./assets/js/Tasks.js"></script>
-        <script src="./assets/js/Friends.js"></script>
+        <script defer src="./assets/js/bluebird.min.js"></script>
+        <script defer src="./assets/js/AJAX.js"></script>
+        <script defer src="./assets/js/TodoList.js"></script>
+        <script defer src="./assets/js/Tasks.js"></script>
+        <script defer src="./assets/js/Friends.js"></script>
+        <script defer src="./assets/js/ThemeSwitcher.js"></script>
     </body>
 </html>

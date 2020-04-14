@@ -1,4 +1,4 @@
-window.addEventListener("load", initTasksEvents);
+initTasksEvents();
 
 /**
  * Init every events
@@ -18,6 +18,7 @@ function initTasksEvents() {
 
     ////// Add Event
     if (addTask) {
+        addTask.removeEventListener("click", function () { });
         addTask.addEventListener("click", function (event) {
             event.stopPropagation();
             addTask.outerHTML =
@@ -35,7 +36,7 @@ function initTasksEvents() {
         tasks.forEach(function (task) {
             task.addEventListener("click", function (event) {
                 event.stopPropagation();
-                updateTask(this.dataset.taskId, this.dataset.taskStatus);
+                updateTask(this.dataset.taskId, this.dataset.taskStatus, false);
             });
         });
     }
@@ -122,18 +123,20 @@ function addTask() {
  * @function    updateTask
  * @access      public
  * @async
- * @param       {string|Number}     taskId      Targeted task id
- * @param       {string|Number}     status      Task's new status
+ * @param       {string|Number}     taskId              Targeted task id
+ * @param       {string|Number}     status              Task's new status
+ * @param       {boolean}           noDisplayUpdate     Update display after update?
  * @return      {void}
  */
-function updateTask(taskId, status) {
+function updateTask(taskId, status, noDisplayUpdate) {
     const ajax = new AJAX();
 
     ajax.call("./php/tasks/update.php", "POST", [taskId, status])
         .then(function () {
             const page = window.location.pathname.split("/").pop();
 
-            if (page && page !== "index.php") getTasks();
+            if (page && page !== "index.php")
+                if (!noDisplayUpdate) getTasks();
         }, ajax.error);
 }
 

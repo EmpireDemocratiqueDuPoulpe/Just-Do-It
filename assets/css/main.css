@@ -61,15 +61,16 @@ header.noFixed {
 
 /* User */
 #user {
-    display: inline-block;
     float: right;
-    width: 275px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 61px;
     margin: 17px 115px 17px 0;
 }
 
 #user p {
-    display: inline-block;
     width: 65%;
     height: 61px;
     line-height: 61px;
@@ -80,20 +81,25 @@ header.noFixed {
     text-overflow: ellipsis;
 }
 
-#disconnect {
-    display: inline-block;
-    float: right;
+#disconnect,
+#themeSwitcher {
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: block;
     text-align: center;
     width: 61px;
     height: 61px;
     line-height: 61px;
     font-size: 2.5em;
+    margin-left: 10px;
     background: #c622eb;
     color: #9e22c3;
     transition: color 250ms;
+    cursor: pointer;
 }
 
-#disconnect:hover {
+#disconnect:hover,
+#themeSwitcher:hover {
     color: #8a22af;
 }
 
@@ -848,7 +854,6 @@ input[type=submit]:focus, button:focus      { outline: none; }
     padding: 5px 0;
     z-index: 250;
     transition: background-color 250ms;
-
     pointer-events: none;
     cursor: default;
 }
@@ -952,7 +957,7 @@ input[type=submit]:focus, button:focus      { outline: none; }
     flex-grow: 0;
     flex-shrink: 0;
     width: 1px;
-    height: 95%;
+    height: auto;
     background: #efefef;
 }
 
@@ -981,3 +986,94 @@ input[type=submit]:focus, button:focus      { outline: none; }
 
 .tDeleteContainer.ongoing   { background: #9a4cd7; color: #efefef; }
 .tDeleteContainer.finished  { background: #4CAF50; color: #efefef; }
+
+/***********************************
+ * Themes
+ ***********************************/
+
+/******************************************************** Light ********************************************************/
+/* Body */
+body.light                                                              { background-color: #F9F9F9; }
+
+/* Forms*/
+body.light .field input                                                 { background-color: #F9F9F9; color: #000000; }
+body.light .field input::placeholder                                    { color: #000000; }
+body.light#registerBody                                                 { background-color: #FFFFFF; color: #000000; }
+body.light#loginBody                                                    { background-color: #FFFFFF; color: #000000; }
+
+/* Todo list */
+body.light .todoList                                                    { border-color: #e5e5e5; }
+body.light #addTodoList                                                 { border-color: #e5e5e5; color: #afafaf; }
+body.light .seeMore .task                                               { color: #FFFFFF; }
+body.light .seeMore:before {
+    -webkit-box-shadow: 5px 5px 5px 0 #e5e5e5;
+    -moz-box-shadow: 5px 5px 5px 0 #e5e5e5;
+    box-shadow: 5px 5px 5px 0 #e5e5e5;
+}
+body.light #addTodoList:not(.noHover):hover                             { background-color: #f0f0f0; }
+body.light .todoList .field input                                       { background: none; }
+
+/* Tasks */
+body.light .task                                                        { background-color: #F9F9F9; color: #000000; border-color: #e5e5e5; }
+body.light .task:not(.noHover):hover                                    { background-color: #efefef; }
+body.light .task.addTask                                                { color: #afafaf; }
+
+/* Friends */
+body.light #friendListBody                                              { background-color: #FAFAFA; }
+body.light .friend                                                      { background-color: #F9F9F9; color: #000000; }
+body.light .friend:hover                                                { background-color: #efefef; }
+body.light .friend.addFriend                                            { color: #afafaf; }
+
+/* Color Selector */
+body.light #cSButton                                                    { background-color: #FFFFFF; border-color: #e5e5e5; }
+body.light #cSCheckbox:hover ~ #cSButton                                { background: #efefef; }
+body.light #cSCheckbox:checked ~ #cSOptions                             { background-color: #FFFFFF; border-color: #e5e5e5; }
+body.light #cSCheckbox:checked ~ #cSOptions .cSOption:not(:last-child)  { border-color: #e5e5e5; }
+body.light #cSCheckbox:checked ~ #cSOptions .cSOption:hover             { background: #efefef; }
+
+/* Task Viewer */
+body.light #tVDelimiter                                                 { background-color: #efefef; }
+
+/******************************************************** Dark ********************************************************/
+/* Body */
+body.dark                                                               { background-color: #292a32; }
+
+/* Forms*/
+body.dark .field input                                                  { background-color: #292a32; color: #FFFFFF; }
+body.dark .field input::placeholder                                     { color: #FFFFFF; }
+body.dark#registerBody                                                  { background-color: #23242c; color: #FFFFFF; }
+body.dark#loginBody                                                     { background-color: #23242c; color: #FFFFFF; }
+
+/* Todo list */
+body.dark .todoList                                                     { border-color: #3d3e46; }
+body.dark #addTodoList                                                  { border-color: #3d3e46; color: #73747c; }
+body.dark .seeMore .task                                                { color: #FFFFFF; }
+body.dark .seeMore:before {
+    -webkit-box-shadow: 5px 5px 5px 0 #252525;
+    -moz-box-shadow: 5px 5px 5px 0 #252525;
+    box-shadow: 5px 5px 5px 0 #252525;
+}
+body.dark #addTodoList:not(.noHover):hover                              { background-color: #32333b; }
+body.dark .todoList .field input                                        { background: none; }
+
+/* Tasks */
+body.dark .task                                                         { background-color: #292a32; color: #FFFFFF; border-color: #73747c; }
+body.dark .task:not(.noHover):hover                                     { background-color: #515151; }
+body.dark .task.addTask                                                 { color: #73747c; }
+
+/* Friends */
+body.dark #friendListBody                                               { background-color: #1e1f27; }
+body.dark .friend                                                       { background-color: #1e1f27; color: #FFFFFF; }
+body.dark .friend:hover                                                 { background-color: #515151; }
+body.dark .friend.addFriend                                             { color: #73747c; }
+body.dark .friend.addFriend:hover                                       { background-color: #32333b; }
+
+/* Color Selector */
+body.dark #cSButton                                                     { background-color: #23242c; border-color: #73747c; }
+body.dark #cSCheckbox:hover ~ #cSButton                                 { background: #515151; }
+body.dark #cSCheckbox:checked ~ #cSOptions                              { background-color: #23242c; border-color: #73747c; }
+body.dark #cSCheckbox:checked ~ #cSOptions .cSOption:not(:last-child)   { border-color: #73747c; }
+body.dark #cSCheckbox:checked ~ #cSOptions .cSOption:hover              { background: #515151; }
+
+/* Task Viewer */
+body.dark #tVDelimiter                                                  { background-color: #515151; }

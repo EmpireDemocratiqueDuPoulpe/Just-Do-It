@@ -1,4 +1,4 @@
-window.addEventListener("load", initFriendsEvents);
+initFriendsEvents();
 
 /**
  * Init every events

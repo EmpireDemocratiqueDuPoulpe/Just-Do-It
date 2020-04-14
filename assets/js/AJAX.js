@@ -114,6 +114,10 @@ class AJAX {
         return Promise.all(promises);
     }
 
+    isQueueEmpty() {
+        return !Boolean(this.queue.length);
+    }
+
     /**
      * Add a running XMLHttpRequest to
      * the queue.

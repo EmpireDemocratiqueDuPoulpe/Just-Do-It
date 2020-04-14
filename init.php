@@ -129,7 +129,7 @@ function getErrorsSuccess() {
         EMAIL_ALREADY_USED => "L'email renseign&eacute; est d&eacute;j&agrave; utilis&eacute;.",
         PASSWORD_DONT_MATCH => "Les mots de passes ne correspondent pas.",
         PASSWORD_NOT_SECURE => "Le mot de passe n'est pas s&eacute;curis&eacute; <em>(une minuscule, une majuscule, un chiffre, un caract&egrave;re sp&eacute;cial, huit caract&egrave;res)</em>.",
-        BAD_PASSWORD => "Le mot de passe renseign&eacute; n'est pas le bon.",
+        BAD_PASSWORD => "Le mot de passe renseign&eacute; est incorrect.",
         UNKNOWN_REGISTER_ERROR => "Erreur inconnue, impossible de vous enregistrer. Veuillez r&eacute;essayer plus tard ou contactez le <a href=\"#\">support</a>.",
         UNKNOWN_USER => "Le nom d'utilisateur renseign&eacute; n'existe pas.",
         CANNOT_DISCONNECT => "Erreur inconnue, impossible de finaliser la d&eacute;connexion. Veuillez r&eacute;essayer plus tard ou contactez le <a href=\"#\">support</a>.",
