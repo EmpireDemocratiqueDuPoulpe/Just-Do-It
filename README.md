@@ -55,11 +55,11 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 | Trouver un utilisateur avec son nom/e-mail | 1 pt | 1 pt |
 | Envoi d'un mail d'invitation | 1 pt | 1 pt |
 | Affichage de la notification | 1 pt | 0 pt |
-| Affichage des listes partagés et modification des droits | 2 pts | 0 pt |
+| Affichage des listes partagés et modification des droits | 2 pts | 1 pt |
 | Supprimer un ami | 1 pt | 1 pt
 | Création des tests d'unités | 3 pts | 0 pt |
 | Design d'un thème clair et sombre | 3 pts | 3 pt |
-| Total | 20 pts | 12 pt |
+| Total | 20 pts | 13 pt |
 
 ## Présentation au correcteur
 
