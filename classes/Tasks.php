@@ -48,10 +48,29 @@ class Tasks {
      */
     public function getAll($user_id) {
 
-        return PDOFactory::sendQuery(
-            $this->_db,
-            'SELECT task_id, list_id, name, status FROM tasks WHERE user_id = :user_id',
-            ["user_id" => (int) $user_id]
+
+            /*PDOFactory::sendQuery(
+                $this->_db,
+                'SELECT task_id, list_id, name, status FROM tasks WHERE user_id = :user_id',
+                ["user_id" => (int) $user_id]
+            ),*/
+
+            return PDOFactory::sendQuery(
+                $this->_db,
+            'SELECT
+                    task_id,
+                    list_id,
+                    name,
+                    status
+                FROM
+                    tasks
+                WHERE
+                    user_id = :user_id OR list_id IN (
+                        SELECT list_id
+                        FROM todo_lists_share
+                        WHERE user_id = :user_id AND accepted = 1
+                    )',
+                ["user_id" => (int) $user_id]
         );
     }
 

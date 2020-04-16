@@ -49,10 +49,14 @@ define("REGISTRATION_COMPLETE", 100);
 /** Todo lists errors code
  *
  * TODO_LIST_NOT_FOUND :    Invalid/empty username
+ * LIST_NAME_NOT_VALID :    Invalid/empty list name
+ * CANNOT_UPDATE_LIST :     Unknown error while updating list
+ * CANNOT_ACCEPT_SHARE :    Unknown error while accepting a share
  */
 define("TODO_LIST_NOT_FOUND", 200);
 define("LIST_NAME_NOT_VALID", 201);
 define("CANNOT_UPDATE_LIST", 210);
+define("CANNOT_ACCEPT_SHARE", 220);
 
 ############################
 # Session

@@ -27,21 +27,35 @@ foreach ($todoLists as $todoList) {
     $list_id = $todoList["list_id"];
     $list_name = htmlspecialchars($todoList["name"]);
     $list_color = strlen($todoList["color"]) != 0 ? htmlspecialchars($todoList["color"]) : "grey";
+    $list_shared = (int) $todoList["shared"];
     $list_tasks = array_keys(array_column($tasksList, 'list_id'), $list_id);
 
     // Process HTML code of the todo list
     ?>
-        <div class="todoList <?= $list_color ?>">
-            <div class="tlDeleteContainer" data-list-id="<?= $list_id ?>">
-                <i class="fas fa-trash"></i>
-            </div>
+        <div class="todoList <?= $list_color ?> <?php if ($list_shared) echo "shared" ?>">
+            <?php if(!$list_shared) { ?>
+                <div class="tlShareContainer" data-list-id="<?= $list_id ?>">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <div class="tlDeleteContainer" data-list-id="<?= $list_id ?>">
+                    <i class="fas fa-trash"></i>
+                </div>
+            <?php } else { ?>
+                <div class="tlSharedContainer">
+                    <i class="fas fa-link"></i>
+                </div>
+            <?php } ?>
             <div class="tlHead">
                 <h2><?= $list_name ?></h2>
             </div>
             <div class="tlBody">
                 <ul class="taskContainer">
                     <?php
-                        $tasks_limit = 4;
+                        $tasksListCount = count($list_tasks);
+
+                        if ($tasksListCount > 4)        $tasks_limit = 4;
+                        elseif ($tasksListCount < 4)    $tasks_limit = $tasksListCount;
+                        else                            $tasks_limit = 4;
                         $tasks_count = 0;
 
                         // Add tasks
@@ -59,7 +73,7 @@ foreach ($todoLists as $todoList) {
                             $HTMLid = "l" . $list_id . "t" . $task_id;
                             $class = $tasks_count + 1 == $tasks_limit ? "task noBottomMargin" : "task";
 
-                            echo '<li class="'.$class.'" data-task-id="'.$task_id.'" data-task-status="'.$task_status.'">
+                            echo '<li class="'.$class.'" data-task-id="'.$task_id.'" data-task-status="'.$tasksListCount.' == '.$tasks_limit.'">
                                     <input type="checkbox" id="'.$HTMLid.'" '.$checkbox_status.'/>
                                     <label for="'.$HTMLid.'">'.$task_name.'</label>
                                  </li>';

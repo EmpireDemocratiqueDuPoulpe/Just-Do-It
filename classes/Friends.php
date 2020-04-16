@@ -19,7 +19,7 @@ class Friends {
     private $_db;
 
     /**
-     * Tasks constructor.
+     * Friends constructor.
      *
      * @function    __construct
      * @access      public
@@ -42,38 +42,49 @@ class Friends {
      * @return      array|string    Array of friends or an error.
      */
     public function getAll($user_id) {
-
-        // Get friendships
-        $friendships =  PDOFactory::sendQuery(
-            $this->_db,
-            'SELECT user_a_id, user_b_id FROM friendships WHERE user_a_id = :user_id OR user_b_id = :user_id',
-            ["user_id" => (int) $user_id]
-        );
-
-        // Format a var used with SQL IN and an array
-        // Example:
-        // $friends_id --> ":id8, :id4, :id16"
-        // $friends_id_params --> ["id8" => 8, "id4" => 4, "id16" => 16]
-        $friends_id = "";
-        $friends_id_params = [];
-
-        foreach ($friendships as $friendship) {
-            if ($friendship["user_a_id"] != $user_id)   { $id = $friendship["user_a_id"]; }
-            else                                        { $id = $friendship["user_b_id"]; }
-
-            $key = "id$id";
-            $friends_id .= ":$key, ";
-            $friends_id_params[$key] = $id;
-        }
-        $friends_id = rtrim($friends_id,", ");
-
-        if (!$friends_id) { return []; }
-
-        // Return the friends list
         return PDOFactory::sendQuery(
             $this->_db,
-            "SELECT user_id, username FROM users WHERE user_id IN($friends_id)",
-            $friends_id_params
+        'SELECT
+                us.user_id,
+                us.username
+            FROM
+                users us
+            WHERE
+                us.user_id IN (
+                    (SELECT user_a_id FROM friendships WHERE user_b_id = :user_id)
+                        UNION
+                    (SELECT user_b_id FROM friendships WHERE user_a_id = :user_id)
+                )',
+            ["user_id" => (int) $user_id]
+        );
+    }
+
+    /**
+     * Get friends who hasn't been added to a list.
+     *
+     * This function get every friends who hasn't
+     * been added to a list. It use the list id and
+     * return an array of users.
+     *
+     * @function    getAllNotShared
+     * @access      public
+     * @param       int|string      $user_id    User id
+     * @param       int|string      $list_id    List id
+     * @return      array|string    Array of friends or an error.
+     */
+    public function getAllNotShared($user_id, $list_id) {
+        return PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT
+                    us.user_id,
+                    us.username
+                FROM
+                    users us
+                WHERE
+                    NOT us.user_id = :user_id AND us.user_id NOT IN (
+                        SELECT tls.user_id FROM todo_lists_share tls WHERE tls.list_id = :list_id
+                    )',
+            ["user_id" => (int) $user_id, "list_id" => (int) $list_id]
         );
     }
 
@@ -118,7 +129,7 @@ class Friends {
      * @function    addByUsername
      * @access      public
      * @param       int|string      $user_id            User id
-     * @param       string          $new_friend_name    Username of the new friend
+     * @param       int|string      $new_friend_name    Username of the new friend
      * @return      boolean
      */
     public function addByUsername($user_id, $new_friend_name) {

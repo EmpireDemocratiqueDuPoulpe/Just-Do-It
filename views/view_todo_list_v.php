@@ -9,9 +9,6 @@
         <!-- Header -->
         <?php $classes = "noShadow noFixed"; include_once(ROOT."/views/models/header.php"); ?>
 
-        <!-- Errors and success messages -->
-        <?= $errorsSuccessMsg ?>
-
         <!-- Todo list -->
         <div id="todoListContainer" class="maxHeight noPadding">
 
@@ -135,6 +132,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Errors and success messages -->
+            <?= $errorsSuccessMsg ?>
 
             <!-- Tasks Viewer -->
             <div id="taskViewer">

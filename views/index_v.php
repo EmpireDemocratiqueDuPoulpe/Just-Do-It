@@ -9,6 +9,9 @@
         <!-- Header -->
         <?php include_once(ROOT."/views/models/header.php"); ?>
 
+        <!-- Share list -->
+        <?php include_once(ROOT."/views/models/share_list.php"); ?>
+
         <!-- Todo list -->
         <div id="todoListContainer">
             <?= $todoListsHTML; ?>
@@ -36,6 +39,7 @@
         <script defer src="./assets/js/AJAX.js"></script>
         <script defer src="./assets/js/TodoList.js"></script>
         <script defer src="./assets/js/Tasks.js"></script>
+        <script defer src="./assets/js/Shares.js"></script>
         <script defer src="./assets/js/Friends.js"></script>
         <script defer src="./assets/js/ThemeSwitcher.js"></script>
     </body>

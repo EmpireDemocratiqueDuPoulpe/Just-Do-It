@@ -47,10 +47,48 @@ class TodoLists {
      */
     public function getAll($user_id) {
 
-        return PDOFactory::sendQuery(
+        /*return PDOFactory::sendQuery(
             $this->_db,
             'SELECT list_id, name, color FROM todo_lists WHERE user_id = :user_id ORDER BY list_id',
             ["user_id" => (int) $user_id]
+        );*/
+        /*
+        return PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT list_id, name, color
+                FROM todo_lists
+                WHERE list_id IN (
+                    SELECT list_id
+                    FROM todo_lists_share
+                    WHERE user_id = :user_id AND accepted = 1
+                ) OR user_id = :user_id',
+            ["user_id" => (int) $user_id]
+        );*/
+
+        return array_merge(
+            PDOFactory::sendQuery(
+                $this->_db,
+                'SELECT list_id, name, color, 0 AS shared FROM todo_lists WHERE user_id = :user_id ORDER BY list_id',
+                ["user_id" => (int) $user_id]
+            ),
+
+            PDOFactory::sendQuery(
+                $this->_db,
+                'SELECT
+                        list_id,
+                        name,
+                        color,
+                        1 AS "shared"
+                    FROM
+                        todo_lists tl
+                    WHERE
+                        list_id IN (
+                            SELECT list_id
+                            FROM todo_lists_share
+                            WHERE user_id = :user_id AND accepted = 1
+                        )',
+                ["user_id" => (int) $user_id]
+            )
         );
     }
 
