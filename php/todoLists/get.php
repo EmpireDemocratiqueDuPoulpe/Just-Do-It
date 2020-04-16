@@ -73,7 +73,7 @@ foreach ($todoLists as $todoList) {
                             $HTMLid = "l" . $list_id . "t" . $task_id;
                             $class = $tasks_count + 1 == $tasks_limit ? "task noBottomMargin" : "task";
 
-                            echo '<li class="'.$class.'" data-task-id="'.$task_id.'" data-task-status="'.$tasksListCount.' == '.$tasks_limit.'">
+                            echo '<li class="'.$class.'" data-task-id="'.$task_id.'" data-task-status="'.$task_status.'">
                                     <input type="checkbox" id="'.$HTMLid.'" '.$checkbox_status.'/>
                                     <label for="'.$HTMLid.'">'.$task_name.'</label>
                                  </li>';

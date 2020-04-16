@@ -132,9 +132,9 @@ function updateTask(taskId, status, noDisplayUpdate) {
     const ajax = new AJAX();
 
     ajax.call("./php/tasks/update.php", "POST", [taskId, status])
-        .then(function (returnResult) {
+        .then(function () {
             const page = window.location.pathname.split("/").pop();
-            console.log(returnResult)
+
             if (page && page !== "index.php")
                 if (!noDisplayUpdate) getTasks();
         }, ajax.error);

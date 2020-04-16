@@ -21,4 +21,4 @@ $message = "";
 if ($TasksManager->changeStatus($task_id, $newStatus)) $message = "Tâche modifiée !";
 else $message = "Erreur pendant la modification de la tâche";
 
-echo json_encode($message);
+echo json_encode($newStatus);
