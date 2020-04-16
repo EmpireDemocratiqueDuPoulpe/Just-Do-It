@@ -2,7 +2,7 @@
 
 <html lang="fr">
     <head>
-        <title>ProjetPHP - Connexion</title>
+        <title>ProjetPHP - Index</title>
         <?php include_once(ROOT."/views/models/head.php"); ?>
     </head>
     <body>
