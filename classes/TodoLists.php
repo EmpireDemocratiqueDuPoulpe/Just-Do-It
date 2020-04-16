@@ -106,10 +106,16 @@ class TodoLists {
      */
     public function get($user_id, $list_id) {
 
-        return PDOFactory::sendQuery(
+        /*return PDOFactory::sendQuery(
             $this->_db,
             'SELECT name, color FROM todo_lists WHERE user_id = :user_id AND list_id = :list_id',
             ["user_id" => (int) $user_id, "list_id" => (int) $list_id]
+        );*/
+
+        return PDOFactory::sendQuery(
+            $this->_db,
+            'SELECT name, color FROM todo_lists WHERE list_id = :list_id',
+            ["list_id" => (int) $list_id]
         );
     }
 

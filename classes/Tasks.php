@@ -91,8 +91,10 @@ class Tasks {
      */
     public function get($user_id, $list_id, $type = "") {
         // Prepare SQL and vars
-        $sql = 'SELECT task_id, name, status FROM tasks WHERE user_id = :user_id && list_id = :list_id';
-        $vars = ["user_id" => (int) $user_id, "list_id" => (int) $list_id];
+        //$sql = 'SELECT task_id, name, status FROM tasks WHERE user_id = :user_id && list_id = :list_id';
+        $sql = 'SELECT task_id, name, status FROM tasks WHERE list_id = :list_id';
+        //$vars = ["user_id" => (int) $user_id, "list_id" => (int) $list_id];
+        $vars = ["list_id" => (int) $list_id];
 
         // Add a check if only on type is wanted
         if ($type == "ongoing") {
