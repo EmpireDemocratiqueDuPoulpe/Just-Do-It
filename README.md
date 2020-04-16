@@ -59,7 +59,7 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 | Supprimer un ami | 1 pt | 1 pt
 | Création des tests d'unités | 3 pts | 0 pt |
 | Design d'un thème clair et sombre | 3 pts | 3 pt |
-| Total | 20 pts | 13 pt |
+| Total | 20 pts | 15 pt |
 
 ## Présentation au correcteur
 
