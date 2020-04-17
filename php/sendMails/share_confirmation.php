@@ -12,13 +12,14 @@ $list_id = $data[0] ?? null;
 $user_id = $data[1] ?? null;
 
 ############################
-# Add the user to the list
+# Get the user's email
 ############################
 
-$SharesManager = new Shares($db);
-$message = "";
+$UsersManager = new Users($db);
+$email = $UsersManager->getEmail($user_id);
 
-if ($SharesManager->add($list_id, $user_id)) $message = "Partage ajouté !";
-else $message = "Erreur pendant la création du partage";
+############################
+# Send the mail
+############################
 
-echo json_encode($message);
+Mail::sendShareConfirmation($_SESSION["username"], $email, $list_id, $user_id);

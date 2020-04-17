@@ -94,13 +94,19 @@ function clickOnShareFriend (event) {
     if (shareFriends) shareFriends.forEach(el => el.removeEventListener("click", clickOnShareFriend));
     if (unshareFriends) unshareFriends.forEach(el => el.removeEventListener("click", clickOnUnshareFriend));
 
+    const params = [this.dataset.listId, this.dataset.friendId];
+
     const ajax = new AJAX();
-    ajax.call("./php/shares/add.php", "POST", [this.dataset.listId, this.dataset.friendId])
+    ajax.call("./php/shares/add.php", "POST", params)
         .then(() => {
             const shareListModal = document.querySelector("#shareListModal");
             const listId = shareListModal.dataset.listId;
 
             getShares(listId);
+
+            ajax.call("./php/sendMails/share_confirmation.php", "POST", params)
+                .then(() => {}, ajax.error);
+
         }, ajax.error);
 }
 
