@@ -2,7 +2,7 @@
 
 <html lang="fr">
     <head>
-        <title>ProjetPHP - Index</title>
+        <title>Just Do It - Vos listes</title>
         <?php include_once(ROOT."/views/models/head.php"); ?>
     </head>
     <body>

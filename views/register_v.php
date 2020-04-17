@@ -2,7 +2,7 @@
 
 <html lang="fr">
     <head>
-        <title>ProjetPHP - Inscription</title>
+        <title>Just Do It - Inscription</title>
         <?php include_once(ROOT."/views/models/head.php"); ?>
     </head>
     <body id="registerBody">

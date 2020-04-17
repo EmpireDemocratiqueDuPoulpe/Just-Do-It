@@ -1,7 +1,10 @@
 <?php if (!isset($classes)) $classes = ""; ?>
 
 <header class="<?= $classes ?>">
-    <div id="logo"></div>
+    <a id="webNameContainer" href="./index.php">
+        <div id="logo"></div>
+        <h1>Just Do It</h1>
+    </a>
 
     <div id="user">
         <p><?= htmlspecialchars($_SESSION["username"]) ?></p>
