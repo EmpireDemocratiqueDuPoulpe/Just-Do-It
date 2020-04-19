@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 17 avr. 2020 à 09:56
+-- Généré le :  Dim 19 avr. 2020 à 11:22
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `todo_lists_share` (
   PRIMARY KEY (`share_id`),
   KEY `list_id` (`list_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `todo_lists_share`
@@ -156,6 +156,7 @@ INSERT INTO `todo_lists_share` (`share_id`, `list_id`, `user_id`, `accepted`) VA
 (1, 54, 7, 1),
 (2, 54, 9, 1),
 (3, 54, 11, 1),
+(40, 54, 12, 1),
 (39, 1, 12, 1),
 (38, 71, 12, 1);
 
