@@ -1,4 +1,4 @@
-# ProjetPHP - TROUVER UN NOM
+# ProjetPHP - Just Do It
 Tout est dans le titre quoi.
 
 # Tâches à accomplir
