@@ -3,7 +3,7 @@ Tout est dans le titre quoi.
 
 # Tâches à accomplir
 
-SUPINFO vous demande de créer un site où il sera possible de créer vos "TODO list" privée et de les partager à vos amis. À la fin du projet, vous devrez faire une présentation à votre correcteur.
+On vous demande de créer un site où il sera possible de créer vos "TODO list" privée et de les partager à vos amis. À la fin du projet, vous devrez faire une présentation à votre correcteur.
 
 ## Design
 
@@ -65,7 +65,7 @@ Vous devrez utiliser la bibliothèque PHPUnit pour effectuer des tests d'unités
 
 Vous aurez un passage de 10 à 15 minutes de présentation du projet. Vous pouvez utiliser n'importe quel moyen pour y parvenir.
 
-## Arborescence du dossier
+## Arborescence du projet
 
  - ProjetPHP
 	 - assets
