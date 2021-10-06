@@ -1,4 +1,4 @@
-# ProjetPHP - Just Do It
+# Just Do It
 Just Do It est un site web visant à augmenter sa productivité en ayant la capacité d'ajouter des notes et de pouvoir les partager avec d'autres utilisateurs.
 
 ***[Eng]** Just Do It is a website with the task to increase our productivity by adding notes and sharing them with others.*
